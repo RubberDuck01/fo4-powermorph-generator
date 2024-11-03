@@ -40,31 +40,33 @@
             btnHelpGenerate = new Button();
             pgBarGenerate = new ProgressBar();
             pbGeneratorState = new PictureBox();
-            label4 = new Label();
+            lblGeneratorState = new Label();
             btnGenerateBodyGenFiles = new Button();
-            label3 = new Label();
+            lblGeneratorStateText = new Label();
             pbInisOutputDir = new PictureBox();
             btnSelectOutputDir = new Button();
-            label2 = new Label();
-            label1 = new Label();
+            lblGeneratorOutputPath = new Label();
+            lblGeneratorOutputDirText = new Label();
             gbUpdateBodyGenFiles = new GroupBox();
             btnHelpUpdate = new Button();
-            label7 = new Label();
+            lblUpdateProgress = new Label();
             pgBarUpdate = new ProgressBar();
             pbBodyGenUpdateState = new PictureBox();
             btnUpdateBodyGenFiles = new Button();
-            label6 = new Label();
-            label5 = new Label();
+            lblUpdateTargetBodyName = new Label();
+            lblUpdateFilesText = new Label();
             pbAppTitle1 = new PictureBox();
             pbAppTitle2 = new PictureBox();
             gbAppLoadData = new GroupBox();
-            label11 = new Label();
+            lblInfoDefaultBodyName = new Label();
             label10 = new Label();
-            label9 = new Label();
+            lblInfoTotalXmls = new Label();
             label8 = new Label();
             btnHelpLoadedXmlsData = new Button();
             lblLinkGithub = new LinkLabel();
             lblLinkNexus = new LinkLabel();
+            lblInfoGeneratorOutput = new Label();
+            lblInfoGeneratorOutputPath = new Label();
             gbLoadXmlsControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbDefBodyLoad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbXmlsLoadStatus).BeginInit();
@@ -107,6 +109,7 @@
             btnXmlsLoad.TabIndex = 2;
             btnXmlsLoad.Text = "Load XML Sliders";
             btnXmlsLoad.UseVisualStyleBackColor = true;
+            btnXmlsLoad.Click += btnXmlsLoad_Click;
             // 
             // lblXmlsPathText
             // 
@@ -218,13 +221,13 @@
             gbGenerateBodyGenFiles.Controls.Add(btnHelpGenerate);
             gbGenerateBodyGenFiles.Controls.Add(pgBarGenerate);
             gbGenerateBodyGenFiles.Controls.Add(pbGeneratorState);
-            gbGenerateBodyGenFiles.Controls.Add(label4);
+            gbGenerateBodyGenFiles.Controls.Add(lblGeneratorState);
             gbGenerateBodyGenFiles.Controls.Add(btnGenerateBodyGenFiles);
-            gbGenerateBodyGenFiles.Controls.Add(label3);
+            gbGenerateBodyGenFiles.Controls.Add(lblGeneratorStateText);
             gbGenerateBodyGenFiles.Controls.Add(pbInisOutputDir);
             gbGenerateBodyGenFiles.Controls.Add(btnSelectOutputDir);
-            gbGenerateBodyGenFiles.Controls.Add(label2);
-            gbGenerateBodyGenFiles.Controls.Add(label1);
+            gbGenerateBodyGenFiles.Controls.Add(lblGeneratorOutputPath);
+            gbGenerateBodyGenFiles.Controls.Add(lblGeneratorOutputDirText);
             gbGenerateBodyGenFiles.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             gbGenerateBodyGenFiles.Location = new Point(290, 102);
             gbGenerateBodyGenFiles.Name = "gbGenerateBodyGenFiles";
@@ -261,16 +264,16 @@
             pbGeneratorState.TabIndex = 16;
             pbGeneratorState.TabStop = false;
             // 
-            // label4
+            // lblGeneratorState
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Red;
-            label4.Location = new Point(221, 98);
-            label4.Name = "label4";
-            label4.Size = new Size(59, 15);
-            label4.TabIndex = 15;
-            label4.Text = "Not ready";
+            lblGeneratorState.AutoSize = true;
+            lblGeneratorState.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGeneratorState.ForeColor = Color.Red;
+            lblGeneratorState.Location = new Point(221, 98);
+            lblGeneratorState.Name = "lblGeneratorState";
+            lblGeneratorState.Size = new Size(59, 15);
+            lblGeneratorState.TabIndex = 15;
+            lblGeneratorState.Text = "Not ready";
             // 
             // btnGenerateBodyGenFiles
             // 
@@ -282,15 +285,15 @@
             btnGenerateBodyGenFiles.Text = "Generate BodyGen Files";
             btnGenerateBodyGenFiles.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // lblGeneratorStateText
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(6, 98);
-            label3.Name = "label3";
-            label3.Size = new Size(162, 15);
-            label3.TabIndex = 13;
-            label3.Text = "PowerMorph Generator state:";
+            lblGeneratorStateText.AutoSize = true;
+            lblGeneratorStateText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGeneratorStateText.Location = new Point(6, 98);
+            lblGeneratorStateText.Name = "lblGeneratorStateText";
+            lblGeneratorStateText.Size = new Size(162, 15);
+            lblGeneratorStateText.TabIndex = 13;
+            lblGeneratorStateText.Text = "PowerMorph Generator state:";
             // 
             // pbInisOutputDir
             // 
@@ -313,37 +316,37 @@
             btnSelectOutputDir.Text = "Select Output Directory";
             btnSelectOutputDir.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // lblGeneratorOutputPath
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(221, 19);
-            label2.Name = "label2";
-            label2.Size = new Size(103, 15);
-            label2.TabIndex = 10;
-            label2.Text = "No path provided!";
+            lblGeneratorOutputPath.AutoSize = true;
+            lblGeneratorOutputPath.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGeneratorOutputPath.ForeColor = Color.Red;
+            lblGeneratorOutputPath.Location = new Point(221, 19);
+            lblGeneratorOutputPath.Name = "lblGeneratorOutputPath";
+            lblGeneratorOutputPath.Size = new Size(103, 15);
+            lblGeneratorOutputPath.TabIndex = 10;
+            lblGeneratorOutputPath.Text = "No path provided!";
             // 
-            // label1
+            // lblGeneratorOutputDirText
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(6, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(170, 15);
-            label1.TabIndex = 10;
-            label1.Text = "BodyGen INIs output directory:";
+            lblGeneratorOutputDirText.AutoSize = true;
+            lblGeneratorOutputDirText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGeneratorOutputDirText.Location = new Point(6, 19);
+            lblGeneratorOutputDirText.Name = "lblGeneratorOutputDirText";
+            lblGeneratorOutputDirText.Size = new Size(170, 15);
+            lblGeneratorOutputDirText.TabIndex = 10;
+            lblGeneratorOutputDirText.Text = "BodyGen INIs output directory:";
             // 
             // gbUpdateBodyGenFiles
             // 
             gbUpdateBodyGenFiles.BackColor = Color.Transparent;
             gbUpdateBodyGenFiles.Controls.Add(btnHelpUpdate);
-            gbUpdateBodyGenFiles.Controls.Add(label7);
+            gbUpdateBodyGenFiles.Controls.Add(lblUpdateProgress);
             gbUpdateBodyGenFiles.Controls.Add(pgBarUpdate);
             gbUpdateBodyGenFiles.Controls.Add(pbBodyGenUpdateState);
             gbUpdateBodyGenFiles.Controls.Add(btnUpdateBodyGenFiles);
-            gbUpdateBodyGenFiles.Controls.Add(label6);
-            gbUpdateBodyGenFiles.Controls.Add(label5);
+            gbUpdateBodyGenFiles.Controls.Add(lblUpdateTargetBodyName);
+            gbUpdateBodyGenFiles.Controls.Add(lblUpdateFilesText);
             gbUpdateBodyGenFiles.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             gbUpdateBodyGenFiles.Location = new Point(290, 303);
             gbUpdateBodyGenFiles.Name = "gbUpdateBodyGenFiles";
@@ -362,15 +365,15 @@
             btnHelpUpdate.Text = "?";
             btnHelpUpdate.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // lblUpdateProgress
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(6, 93);
-            label7.Name = "label7";
-            label7.Size = new Size(55, 15);
-            label7.TabIndex = 20;
-            label7.Text = "Progress:";
+            lblUpdateProgress.AutoSize = true;
+            lblUpdateProgress.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUpdateProgress.Location = new Point(6, 93);
+            lblUpdateProgress.Name = "lblUpdateProgress";
+            lblUpdateProgress.Size = new Size(55, 15);
+            lblUpdateProgress.TabIndex = 20;
+            lblUpdateProgress.Text = "Progress:";
             // 
             // pgBarUpdate
             // 
@@ -400,26 +403,26 @@
             btnUpdateBodyGenFiles.Text = "Go!";
             btnUpdateBodyGenFiles.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // lblUpdateTargetBodyName
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Red;
-            label6.Location = new Point(250, 19);
-            label6.Name = "label6";
-            label6.Size = new Size(102, 15);
-            label6.TabIndex = 18;
-            label6.Text = "Target body name";
+            lblUpdateTargetBodyName.AutoSize = true;
+            lblUpdateTargetBodyName.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUpdateTargetBodyName.ForeColor = Color.Red;
+            lblUpdateTargetBodyName.Location = new Point(250, 19);
+            lblUpdateTargetBodyName.Name = "lblUpdateTargetBodyName";
+            lblUpdateTargetBodyName.Size = new Size(102, 15);
+            lblUpdateTargetBodyName.TabIndex = 18;
+            lblUpdateTargetBodyName.Text = "Target body name";
             // 
-            // label5
+            // lblUpdateFilesText
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(6, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(238, 15);
-            label5.TabIndex = 18;
-            label5.Text = "Update BodyGen files based on target body:";
+            lblUpdateFilesText.AutoSize = true;
+            lblUpdateFilesText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUpdateFilesText.Location = new Point(6, 19);
+            lblUpdateFilesText.Name = "lblUpdateFilesText";
+            lblUpdateFilesText.Size = new Size(238, 15);
+            lblUpdateFilesText.TabIndex = 18;
+            lblUpdateFilesText.Text = "Update BodyGen files based on target body:";
             // 
             // pbAppTitle1
             // 
@@ -446,9 +449,11 @@
             // gbAppLoadData
             // 
             gbAppLoadData.BackColor = Color.Transparent;
-            gbAppLoadData.Controls.Add(label11);
+            gbAppLoadData.Controls.Add(lblInfoGeneratorOutputPath);
+            gbAppLoadData.Controls.Add(lblInfoGeneratorOutput);
+            gbAppLoadData.Controls.Add(lblInfoDefaultBodyName);
             gbAppLoadData.Controls.Add(label10);
-            gbAppLoadData.Controls.Add(label9);
+            gbAppLoadData.Controls.Add(lblInfoTotalXmls);
             gbAppLoadData.Controls.Add(label8);
             gbAppLoadData.Controls.Add(btnHelpLoadedXmlsData);
             gbAppLoadData.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
@@ -459,37 +464,37 @@
             gbAppLoadData.TabStop = false;
             gbAppLoadData.Text = "Application load data";
             // 
-            // label11
+            // lblInfoDefaultBodyName
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.Red;
-            label11.Location = new Point(6, 82);
-            label11.Name = "label11";
-            label11.Size = new Size(165, 15);
-            label11.TabIndex = 12;
-            label11.Text = "Default body XML not loaded!";
+            lblInfoDefaultBodyName.AutoSize = true;
+            lblInfoDefaultBodyName.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoDefaultBodyName.ForeColor = Color.Red;
+            lblInfoDefaultBodyName.Location = new Point(6, 52);
+            lblInfoDefaultBodyName.Name = "lblInfoDefaultBodyName";
+            lblInfoDefaultBodyName.Size = new Size(165, 15);
+            lblInfoDefaultBodyName.TabIndex = 12;
+            lblInfoDefaultBodyName.Text = "Default body XML not loaded!";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(6, 67);
+            label10.Location = new Point(6, 37);
             label10.Name = "label10";
             label10.Size = new Size(146, 15);
             label10.TabIndex = 12;
             label10.Text = "Default body preset name:";
             // 
-            // label9
+            // lblInfoTotalXmls
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Red;
-            label9.Location = new Point(6, 34);
-            label9.Name = "label9";
-            label9.Size = new Size(103, 15);
-            label9.TabIndex = 12;
-            label9.Text = "No path provided!";
+            lblInfoTotalXmls.AutoSize = true;
+            lblInfoTotalXmls.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoTotalXmls.ForeColor = Color.Red;
+            lblInfoTotalXmls.Location = new Point(187, 19);
+            lblInfoTotalXmls.Name = "lblInfoTotalXmls";
+            lblInfoTotalXmls.Size = new Size(13, 15);
+            lblInfoTotalXmls.TabIndex = 12;
+            lblInfoTotalXmls.Text = "0";
             // 
             // label8
             // 
@@ -532,6 +537,27 @@
             lblLinkNexus.TabIndex = 11;
             lblLinkNexus.TabStop = true;
             lblLinkNexus.Text = "Nexus page";
+            // 
+            // lblInfoGeneratorOutput
+            // 
+            lblInfoGeneratorOutput.AutoSize = true;
+            lblInfoGeneratorOutput.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoGeneratorOutput.Location = new Point(6, 78);
+            lblInfoGeneratorOutput.Name = "lblInfoGeneratorOutput";
+            lblInfoGeneratorOutput.Size = new Size(151, 15);
+            lblInfoGeneratorOutput.TabIndex = 13;
+            lblInfoGeneratorOutput.Text = "Generator output directory:";
+            // 
+            // lblInfoGeneratorOutputPath
+            // 
+            lblInfoGeneratorOutputPath.AutoSize = true;
+            lblInfoGeneratorOutputPath.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoGeneratorOutputPath.ForeColor = Color.Red;
+            lblInfoGeneratorOutputPath.Location = new Point(6, 93);
+            lblInfoGeneratorOutputPath.Name = "lblInfoGeneratorOutputPath";
+            lblInfoGeneratorOutputPath.Size = new Size(161, 15);
+            lblInfoGeneratorOutputPath.TabIndex = 14;
+            lblInfoGeneratorOutputPath.Text = "No output directory selected!";
             // 
             // FormMain
             // 
@@ -591,30 +617,32 @@
         private PictureBox pbAppTitle1;
         private PictureBox pbAppTitle2;
         private Button btnSelectOutputDir;
-        private Label label2;
-        private Label label1;
+        private Label lblGeneratorOutputPath;
+        private Label lblGeneratorOutputDirText;
         private PictureBox pbDefBodyLoad;
         private PictureBox pbInisOutputDir;
-        private Label label3;
+        private Label lblGeneratorStateText;
         private ProgressBar pgBarGenerate;
         private PictureBox pbGeneratorState;
-        private Label label4;
+        private Label lblGeneratorState;
         private Button btnGenerateBodyGenFiles;
-        private Label label7;
+        private Label lblUpdateProgress;
         private ProgressBar pgBarUpdate;
         private PictureBox pbBodyGenUpdateState;
         private Button btnUpdateBodyGenFiles;
-        private Label label6;
-        private Label label5;
+        private Label lblUpdateTargetBodyName;
+        private Label lblUpdateFilesText;
         private GroupBox gbAppLoadData;
         private Button btnHelpGenerate;
         private Button btnHelpUpdate;
         private Button btnHelpLoadedXmlsData;
         private LinkLabel lblLinkGithub;
         private LinkLabel lblLinkNexus;
-        private Label label11;
+        private Label lblInfoDefaultBodyName;
         private Label label10;
-        private Label label9;
+        private Label lblInfoTotalXmls;
         private Label label8;
+        private Label lblInfoGeneratorOutputPath;
+        private Label lblInfoGeneratorOutput;
     }
 }
