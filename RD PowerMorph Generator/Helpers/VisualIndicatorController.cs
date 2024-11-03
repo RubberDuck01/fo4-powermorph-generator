@@ -22,6 +22,7 @@ namespace RD_PowerMorph_Generator.Helpers
             // pbInisOutputDir -- forbidden
             // pbGeneratorState -- forbidden
             // pbBodyGenUpdateState -- forbidden
+
             try
             {
                 var pbXmlsLoadStatus = _formMain.Controls.Find("pbXmlsLoadStatus", true).FirstOrDefault() as PictureBox;
@@ -59,6 +60,34 @@ namespace RD_PowerMorph_Generator.Helpers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void SetPbOk(string pbName) {
+            var targetPb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
+            if (targetPb != null) {
+                targetPb.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_ok);
+            }
+        }
+
+        public void SetPbNotOk(string pbName) {
+            var targetPb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
+            if (targetPb != null) {
+                targetPb.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_cancel);
+            }
+        }
+
+        public void SetPbPlus(string pbName) {
+            var targetPb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
+            if (targetPb != null) {
+                targetPb.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_edit_add);
+            }
+        }
+
+        public void SetPbWorking(string pbName) {
+            var targetPb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
+            if (targetPb != null) {
+                targetPb.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_run);
             }
         }
 
