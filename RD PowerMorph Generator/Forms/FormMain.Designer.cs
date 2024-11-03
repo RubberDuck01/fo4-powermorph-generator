@@ -152,20 +152,22 @@
             // pbDefBodyLoad
             // 
             pbDefBodyLoad.BackColor = Color.Transparent;
+            pbDefBodyLoad.BackgroundImageLayout = ImageLayout.Stretch;
             pbDefBodyLoad.Location = new Point(221, 138);
             pbDefBodyLoad.Name = "pbDefBodyLoad";
             pbDefBodyLoad.Size = new Size(45, 45);
-            pbDefBodyLoad.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbDefBodyLoad.SizeMode = PictureBoxSizeMode.StretchImage;
             pbDefBodyLoad.TabIndex = 11;
             pbDefBodyLoad.TabStop = false;
             // 
             // pbXmlsLoadStatus
             // 
             pbXmlsLoadStatus.BackColor = Color.Transparent;
+            pbXmlsLoadStatus.BackgroundImageLayout = ImageLayout.Stretch;
             pbXmlsLoadStatus.Location = new Point(221, 52);
             pbXmlsLoadStatus.Name = "pbXmlsLoadStatus";
             pbXmlsLoadStatus.Size = new Size(45, 45);
-            pbXmlsLoadStatus.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbXmlsLoadStatus.SizeMode = PictureBoxSizeMode.StretchImage;
             pbXmlsLoadStatus.TabIndex = 8;
             pbXmlsLoadStatus.TabStop = false;
             // 
@@ -251,10 +253,11 @@
             // pbGeneratorState
             // 
             pbGeneratorState.BackColor = Color.Transparent;
+            pbGeneratorState.BackgroundImageLayout = ImageLayout.Stretch;
             pbGeneratorState.Location = new Point(221, 116);
             pbGeneratorState.Name = "pbGeneratorState";
             pbGeneratorState.Size = new Size(45, 45);
-            pbGeneratorState.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbGeneratorState.SizeMode = PictureBoxSizeMode.StretchImage;
             pbGeneratorState.TabIndex = 16;
             pbGeneratorState.TabStop = false;
             // 
@@ -292,10 +295,11 @@
             // pbInisOutputDir
             // 
             pbInisOutputDir.BackColor = Color.Transparent;
+            pbInisOutputDir.BackgroundImageLayout = ImageLayout.Stretch;
             pbInisOutputDir.Location = new Point(221, 44);
             pbInisOutputDir.Name = "pbInisOutputDir";
             pbInisOutputDir.Size = new Size(45, 45);
-            pbInisOutputDir.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbInisOutputDir.SizeMode = PictureBoxSizeMode.StretchImage;
             pbInisOutputDir.TabIndex = 12;
             pbInisOutputDir.TabStop = false;
             // 
@@ -378,10 +382,11 @@
             // pbBodyGenUpdateState
             // 
             pbBodyGenUpdateState.BackColor = Color.Transparent;
+            pbBodyGenUpdateState.BackgroundImageLayout = ImageLayout.Stretch;
             pbBodyGenUpdateState.Location = new Point(221, 37);
             pbBodyGenUpdateState.Name = "pbBodyGenUpdateState";
             pbBodyGenUpdateState.Size = new Size(45, 45);
-            pbBodyGenUpdateState.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbBodyGenUpdateState.SizeMode = PictureBoxSizeMode.StretchImage;
             pbBodyGenUpdateState.TabIndex = 18;
             pbBodyGenUpdateState.TabStop = false;
             // 

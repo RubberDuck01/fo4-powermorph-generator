@@ -117,4 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Everaldo-Crystal-Clear-Action-ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-ok.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Everaldo-Crystal-Clear-Action-delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-delete.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Everaldo-Crystal-Clear-Action-cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-cancel.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Everaldo-Crystal-Clear-Action-button-info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-button-info.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Everaldo-Crystal-Clear-Action-edit-add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-edit-add.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Everaldo-Crystal-Clear-Action-run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Everaldo-Crystal-Clear-Action-run.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

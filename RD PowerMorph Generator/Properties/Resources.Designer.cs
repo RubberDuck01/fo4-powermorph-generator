@@ -59,5 +59,65 @@ namespace RD_PowerMorph_Generator.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_button_info {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-button-info", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_cancel {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-cancel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_delete {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-delete", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_edit_add {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-edit-add", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_ok {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-ok", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Everaldo_Crystal_Clear_Action_run {
+            get {
+                object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-run", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
