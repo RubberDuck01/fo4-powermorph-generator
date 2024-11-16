@@ -16,7 +16,14 @@ namespace RD_PowerMorph_Generator.Helpers {
         }
 
         public void SetInitialLabelCaptions() {
+            // TODO: Set initial label captions
+        }
 
+        public void SetLabelCaption(string lblName, string lblCaption) {
+            var label = _formMain.Controls.Find(lblName, true).FirstOrDefault() as Label;
+            if (label != null) {
+                label.Text = lblCaption;
+            }
         }
 
         public void SetLabelPathOk(string lblName, string txtPath) {
