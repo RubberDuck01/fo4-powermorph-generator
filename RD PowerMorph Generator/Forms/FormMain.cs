@@ -38,5 +38,9 @@ namespace RD_PowerMorph_Generator
         private void btnXmlsLoad_Click(object sender, EventArgs e) {
             _bodyLoader.LoadXmlsFromDirectory();
         }
+
+        private void btnLoadDefaultBody_Click(object sender, EventArgs e) {
+            _bodyLoader.LoadTargetBodyXml();
+        }
     }
 }

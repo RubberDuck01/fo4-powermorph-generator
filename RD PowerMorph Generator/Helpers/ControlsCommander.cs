@@ -54,6 +54,11 @@ namespace RD_PowerMorph_Generator.Helpers {
                 }
             }
         }
+
+        public void EnableApplicationDataGroupBox(string targetBodyXmlName) {
+            EnableGroup("gbAppLoadData");
+            _labelsWorker.SetLabelInfoText("lblInfoDefaultBodyName", targetBodyXmlName, "The name of your selected default body preset XML.");
+        }
         
         public void EnableGenerateGroupBox(int totalXmlsCount) {
             EnableGroup("gbAppLoadData");

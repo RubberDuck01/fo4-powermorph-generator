@@ -58,6 +58,8 @@
             pbAppTitle1 = new PictureBox();
             pbAppTitle2 = new PictureBox();
             gbAppLoadData = new GroupBox();
+            lblInfoGeneratorOutputPath = new Label();
+            lblInfoGeneratorOutput = new Label();
             lblInfoDefaultBodyName = new Label();
             label10 = new Label();
             lblInfoTotalXmls = new Label();
@@ -65,8 +67,6 @@
             btnHelpLoadedXmlsData = new Button();
             lblLinkGithub = new LinkLabel();
             lblLinkNexus = new LinkLabel();
-            lblInfoGeneratorOutput = new Label();
-            lblInfoGeneratorOutputPath = new Label();
             gbLoadXmlsControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbDefBodyLoad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbXmlsLoadStatus).BeginInit();
@@ -204,6 +204,7 @@
             btnLoadDefaultBody.TabIndex = 4;
             btnLoadDefaultBody.Text = "Load target body XML";
             btnLoadDefaultBody.UseVisualStyleBackColor = true;
+            btnLoadDefaultBody.Click += btnLoadDefaultBody_Click;
             // 
             // btnHelpLoadXmls
             // 
@@ -464,6 +465,27 @@
             gbAppLoadData.TabStop = false;
             gbAppLoadData.Text = "Application load data";
             // 
+            // lblInfoGeneratorOutputPath
+            // 
+            lblInfoGeneratorOutputPath.AutoSize = true;
+            lblInfoGeneratorOutputPath.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoGeneratorOutputPath.ForeColor = Color.Red;
+            lblInfoGeneratorOutputPath.Location = new Point(6, 93);
+            lblInfoGeneratorOutputPath.Name = "lblInfoGeneratorOutputPath";
+            lblInfoGeneratorOutputPath.Size = new Size(161, 15);
+            lblInfoGeneratorOutputPath.TabIndex = 14;
+            lblInfoGeneratorOutputPath.Text = "No output directory selected!";
+            // 
+            // lblInfoGeneratorOutput
+            // 
+            lblInfoGeneratorOutput.AutoSize = true;
+            lblInfoGeneratorOutput.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInfoGeneratorOutput.Location = new Point(6, 78);
+            lblInfoGeneratorOutput.Name = "lblInfoGeneratorOutput";
+            lblInfoGeneratorOutput.Size = new Size(151, 15);
+            lblInfoGeneratorOutput.TabIndex = 13;
+            lblInfoGeneratorOutput.Text = "Generator output directory:";
+            // 
             // lblInfoDefaultBodyName
             // 
             lblInfoDefaultBodyName.AutoSize = true;
@@ -537,27 +559,6 @@
             lblLinkNexus.TabIndex = 11;
             lblLinkNexus.TabStop = true;
             lblLinkNexus.Text = "Nexus page";
-            // 
-            // lblInfoGeneratorOutput
-            // 
-            lblInfoGeneratorOutput.AutoSize = true;
-            lblInfoGeneratorOutput.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblInfoGeneratorOutput.Location = new Point(6, 78);
-            lblInfoGeneratorOutput.Name = "lblInfoGeneratorOutput";
-            lblInfoGeneratorOutput.Size = new Size(151, 15);
-            lblInfoGeneratorOutput.TabIndex = 13;
-            lblInfoGeneratorOutput.Text = "Generator output directory:";
-            // 
-            // lblInfoGeneratorOutputPath
-            // 
-            lblInfoGeneratorOutputPath.AutoSize = true;
-            lblInfoGeneratorOutputPath.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblInfoGeneratorOutputPath.ForeColor = Color.Red;
-            lblInfoGeneratorOutputPath.Location = new Point(6, 93);
-            lblInfoGeneratorOutputPath.Name = "lblInfoGeneratorOutputPath";
-            lblInfoGeneratorOutputPath.Size = new Size(161, 15);
-            lblInfoGeneratorOutputPath.TabIndex = 14;
-            lblInfoGeneratorOutputPath.Text = "No output directory selected!";
             // 
             // FormMain
             // 

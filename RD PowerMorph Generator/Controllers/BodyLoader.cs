@@ -14,6 +14,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         private readonly LabelsWorker _labelsWorker;
         private readonly VisualIndicatorController _visualIndicatorController;
         private List<XDocument> _bodyXmls;
+        private XDocument _targetBodyXml;
 
         public BodyLoader(FormMain formMain) {
             _formMain = formMain;
@@ -50,6 +51,33 @@ namespace RD_PowerMorph_Generator.Controllers {
 
         public List<XDocument> GetAllBodyXmls() {
             return _bodyXmls;
+        }
+
+        // Load target (default) body XML:
+        // this is for use with custom patching for bypassing zeroed-sliders body build
+        public void LoadTargetBodyXml() {
+            using (var openFileDialog = new OpenFileDialog()) {
+                openFileDialog.Filter = "XML files (*.xml)|*.xml";
+                openFileDialog.Title = "Load target (default) body XML file preset";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                    var filePath = openFileDialog.FileName;
+
+                    try {
+                        _targetBodyXml = XDocument.Load(filePath);
+                        MessageBox.Show($"Target body XML loaded successfully!\nFull path to XML:\n{filePath}", "Target body XML loaded!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _labelsWorker.SetLabelPathOk("lblDefaultBodyPresetPath", filePath);
+                        _visualIndicatorController.SetPbOk("pbDefBodyLoad");
+                        _controlsCommander.EnableApplicationDataGroupBox(Path.GetFileName(filePath));
+                    } catch (Exception ex) {
+                        MessageBox.Show($"Error loading target body XML file: {filePath}\n\n{ex.Message}", "Something went wrong...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        public XDocument GetTargetBodyXml() {
+            return _targetBodyXml;
         }
     }
 }
