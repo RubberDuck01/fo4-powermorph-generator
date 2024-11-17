@@ -8,6 +8,7 @@ namespace RD_PowerMorph_Generator
         private readonly HelpButtonsManager _helpButtonsManager;
         private readonly VisualIndicatorController _visualIndicatorController;
         private readonly BodyLoader _bodyLoader;
+        private readonly LabelsWorker _labelsWorker;
 
         public FormMain() {
             InitializeComponent();
@@ -19,6 +20,10 @@ namespace RD_PowerMorph_Generator
             // Initialize VisualIndicatorController:
             _visualIndicatorController = new VisualIndicatorController(this);
             _visualIndicatorController.SetInitial();
+
+            // Initialize LabelsWorker:
+            _labelsWorker = new LabelsWorker(this);
+            _labelsWorker.SetInitialLabelCaptions();
 
             // Initialize the HelpButtonsManager:
             _helpButtonsManager = new HelpButtonsManager();

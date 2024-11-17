@@ -22,6 +22,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             _labelsWorker = new LabelsWorker(_formMain);
             _visualIndicatorController = new VisualIndicatorController(_formMain);
             _bodyXmls = new List<XDocument>();
+            _targetBodyXml = new XDocument();
         }
 
         // Load all XMLs from target directory:
@@ -44,6 +45,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                     MessageBox.Show($"Loaded {_bodyXmls.Count} XML files.", "XMLs loaded!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _labelsWorker.SetLabelPathOk("lblXmlsPath", dirPath);
                     _controlsCommander.EnableGenerateGroupBox(_bodyXmls.Count);
+                    _visualIndicatorController.SetPbCaption("pbXmlsLoadStatus", "Selected directory ok!");
                     _controlsCommander.DisableButton("btnGenerateBodyGenFiles");
                 }
             }
@@ -68,6 +70,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                         MessageBox.Show($"Target body XML loaded successfully!\nFull path to XML:\n{filePath}", "Target body XML loaded!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         _labelsWorker.SetLabelPathOk("lblDefaultBodyPresetPath", filePath);
                         _visualIndicatorController.SetPbOk("pbDefBodyLoad");
+                        _visualIndicatorController.SetPbCaption("pbDefBodyLoad", "Target body preset XML loaded!");
                         _controlsCommander.EnableApplicationDataGroupBox(Path.GetFileName(filePath));
                     } catch (Exception ex) {
                         MessageBox.Show($"Error loading target body XML file: {filePath}\n\n{ex.Message}", "Something went wrong...", MessageBoxButtons.OK, MessageBoxIcon.Error);

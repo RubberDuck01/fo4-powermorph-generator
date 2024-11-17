@@ -17,12 +17,21 @@ namespace RD_PowerMorph_Generator.Helpers {
 
         public void SetInitialLabelCaptions() {
             // TODO: Set initial label captions
+            SetLabelCaption("lblVer", "Current version is 1.0.0 (XX/Nov/2024)");
+            SetLabelCaption("lblXmlsPath", "Path to all your body preset XML files");
+            SetLabelCaption("lblDefaultBodyPresetPath", "Path to your target (default) body preset XML file");
+            SetLabelCaption("lblInfoTotalXmls", "Number of detected body preset XMLs in selected directory");
+            SetLabelCaption("lblInfoDefaultBodyName", "Name of your selected default body preset XML");
+            SetLabelCaption("lblInfoGeneratorOutputPath", "Path to the output directory for generated BodyGen files");
+            SetLabelCaption("lblGeneratorOutputPath", "Path to the output directory for generated BodyGen files");
+            SetLabelCaption("lblGeneratorState", "Current state of the BodyGen generator");
+            SetLabelCaption("lblUpdateTargetBodyName", "Name of the target body preset XML for BodyGen files patching");
         }
 
         public void SetLabelCaption(string lblName, string lblCaption) {
             var label = _formMain.Controls.Find(lblName, true).FirstOrDefault() as Label;
             if (label != null) {
-                label.Text = lblCaption;
+                _toolTip.SetToolTip(label, lblCaption);
             }
         }
 

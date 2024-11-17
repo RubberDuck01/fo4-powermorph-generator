@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace RD_PowerMorph_Generator.Helpers {
     internal class VisualIndicatorController {
         private readonly FormMain _formMain;
+        private readonly ToolTip _toolTip;
 
         public VisualIndicatorController(FormMain formMain) {
             _formMain = formMain;
+            _toolTip = new ToolTip();
         }
 
         public void SetInitial() {
@@ -28,10 +30,12 @@ namespace RD_PowerMorph_Generator.Helpers {
 
                 if (pbXmlsLoadStatus != null) {
                     pbXmlsLoadStatus.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_cancel);
+                    SetPbCaption("pbXmlsLoadStatus", "No directory selected!");
                 }
 
                 if (pbDefBodyLoad != null) {
                     pbDefBodyLoad.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_cancel);
+                    SetPbCaption("pbDefBodyLoad", "No default body preset selected!");
                 }
 
                 if (pbInisOutputDir != null) {
@@ -76,6 +80,13 @@ namespace RD_PowerMorph_Generator.Helpers {
             var targetPb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
             if (targetPb != null) {
                 targetPb.Image = ByteArrayToImage(Properties.Resources.Everaldo_Crystal_Clear_Action_run);
+            }
+        }
+
+        public void SetPbCaption(string pbName, string caption) {
+            var pb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
+            if (pb != null) {
+                _toolTip.SetToolTip(pb, caption);
             }
         }
 

@@ -66,7 +66,9 @@ namespace RD_PowerMorph_Generator.Helpers {
             _labelsWorker.SetLabelInfoText("lblInfoTotalXmls", totalXmlsCount.ToString(), $"The selected directory contains {totalXmlsCount} BodySlide slider preset(s).");
             _visualIndicatorController.SetPbOk("pbXmlsLoadStatus");
             _visualIndicatorController.SetPbNotOk("pbInisOutputDir");
+            _visualIndicatorController.SetPbCaption("pbInisOutputDir", "Select the output directory for generated BodyGen files");
             _visualIndicatorController.SetPbNotOk("pbGeneratorState");
+            _visualIndicatorController.SetPbCaption("pbGeneratorState", "Generator not ready because output directory is not set");
         }
     }
 }
