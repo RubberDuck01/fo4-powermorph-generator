@@ -36,6 +36,11 @@
             btnLoadDefaultBody = new Button();
             btnHelpLoadXmls = new Button();
             gbGenerateBodyGenFiles = new GroupBox();
+            tbRandomFilter = new TextBox();
+            radioBtnFilterSmall = new RadioButton();
+            radioBtnFilterBig = new RadioButton();
+            lblRandomFilter = new Label();
+            lblBigSmallFilter = new Label();
             btnHelpGenerate = new Button();
             pgBarGenerate = new ProgressBar();
             pbGeneratorState = new PictureBox();
@@ -215,6 +220,11 @@
             // gbGenerateBodyGenFiles
             // 
             gbGenerateBodyGenFiles.BackColor = Color.Transparent;
+            gbGenerateBodyGenFiles.Controls.Add(tbRandomFilter);
+            gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterSmall);
+            gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterBig);
+            gbGenerateBodyGenFiles.Controls.Add(lblRandomFilter);
+            gbGenerateBodyGenFiles.Controls.Add(lblBigSmallFilter);
             gbGenerateBodyGenFiles.Controls.Add(btnHelpGenerate);
             gbGenerateBodyGenFiles.Controls.Add(pgBarGenerate);
             gbGenerateBodyGenFiles.Controls.Add(pbGeneratorState);
@@ -232,6 +242,56 @@
             gbGenerateBodyGenFiles.TabIndex = 6;
             gbGenerateBodyGenFiles.TabStop = false;
             gbGenerateBodyGenFiles.Text = "Generate BodyGen Files:";
+            // 
+            // tbRandomFilter
+            // 
+            tbRandomFilter.BackColor = SystemColors.InactiveBorder;
+            tbRandomFilter.Location = new Point(400, 143);
+            tbRandomFilter.Name = "tbRandomFilter";
+            tbRandomFilter.Size = new Size(136, 23);
+            tbRandomFilter.TabIndex = 22;
+            // 
+            // radioBtnFilterSmall
+            // 
+            radioBtnFilterSmall.AutoSize = true;
+            radioBtnFilterSmall.Location = new Point(447, 114);
+            radioBtnFilterSmall.Name = "radioBtnFilterSmall";
+            radioBtnFilterSmall.Size = new Size(53, 19);
+            radioBtnFilterSmall.TabIndex = 21;
+            radioBtnFilterSmall.Text = "Small";
+            radioBtnFilterSmall.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnFilterBig
+            // 
+            radioBtnFilterBig.AutoSize = true;
+            radioBtnFilterBig.Checked = true;
+            radioBtnFilterBig.Location = new Point(400, 114);
+            radioBtnFilterBig.Name = "radioBtnFilterBig";
+            radioBtnFilterBig.Size = new Size(41, 19);
+            radioBtnFilterBig.TabIndex = 20;
+            radioBtnFilterBig.TabStop = true;
+            radioBtnFilterBig.Text = "Big";
+            radioBtnFilterBig.UseVisualStyleBackColor = true;
+            // 
+            // lblRandomFilter
+            // 
+            lblRandomFilter.AutoSize = true;
+            lblRandomFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRandomFilter.Location = new Point(316, 146);
+            lblRandomFilter.Name = "lblRandomFilter";
+            lblRandomFilter.Size = new Size(78, 15);
+            lblRandomFilter.TabIndex = 19;
+            lblRandomFilter.Text = "Randomness:";
+            // 
+            // lblBigSmallFilter
+            // 
+            lblBigSmallFilter.AutoSize = true;
+            lblBigSmallFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBigSmallFilter.Location = new Point(337, 116);
+            lblBigSmallFilter.Name = "lblBigSmallFilter";
+            lblBigSmallFilter.Size = new Size(57, 15);
+            lblBigSmallFilter.TabIndex = 18;
+            lblBigSmallFilter.Text = "Size filter:";
             // 
             // btnHelpGenerate
             // 
@@ -698,5 +758,10 @@
         private PictureBox pbNexus;
         private PictureBox pbKoFi;
         private PictureBox pbRedStar;
+        private RadioButton radioBtnFilterSmall;
+        private RadioButton radioBtnFilterBig;
+        private Label lblRandomFilter;
+        private Label lblBigSmallFilter;
+        private TextBox tbRandomFilter;
     }
 }
