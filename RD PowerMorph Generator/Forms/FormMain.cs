@@ -10,20 +10,23 @@ namespace RD_PowerMorph_Generator
         private readonly BodyLoader _bodyLoader;
         private readonly LabelsWorker _labelsWorker;
         private readonly OnlineLinksWorker _onlineLinksWorker;
+        private readonly PowerMorphGenerator _powerMorphGenerator;
+        private readonly ToolTip _sharedToolTip;
 
         public FormMain() {
             InitializeComponent();
+            _sharedToolTip = new ToolTip();
 
             // Initialize ControlsCommander:
-            _controlsCommander = new ControlsCommander(this);
+            _controlsCommander = new ControlsCommander(this, _sharedToolTip);
             _controlsCommander.SetInitialGroupBoxStates();
 
             // Initialize VisualIndicatorController:
-            _visualIndicatorController = new VisualIndicatorController(this);
+            _visualIndicatorController = new VisualIndicatorController(this, _sharedToolTip);
             _visualIndicatorController.SetInitial();
 
             // Initialize LabelsWorker:
-            _labelsWorker = new LabelsWorker(this);
+            _labelsWorker = new LabelsWorker(this, _sharedToolTip);
             _labelsWorker.SetInitialLabelCaptions();
 
             // Initialize the HelpButtonsManager:
@@ -34,11 +37,14 @@ namespace RD_PowerMorph_Generator
             btnHelpLoadedXmlsData.Click += (sender, e) => ShowHelpMessage(4);
 
             // Initialize the BodyLoader:
-            _bodyLoader = new BodyLoader(this);
+            _bodyLoader = new BodyLoader(this, _sharedToolTip);
 
             // Initialize the OnlineLinksWorker:
-            _onlineLinksWorker = new OnlineLinksWorker(this);
+            _onlineLinksWorker = new OnlineLinksWorker(this, _sharedToolTip);
             _onlineLinksWorker.SetAllOnlineLinks();
+
+            // Initialize the PowerMorphGenerator:
+            _powerMorphGenerator = new PowerMorphGenerator(this, _sharedToolTip);
         }
 
         private void ShowHelpMessage(int btnId) {
@@ -121,6 +127,10 @@ namespace RD_PowerMorph_Generator
             if (pbKoFi != null) {
                 pbKoFi.Image = Properties.Resources.rd_kofi_click;
             }
+        }
+
+        private void btnSelectOutputDir_Click(object sender, EventArgs e) {
+            _powerMorphGenerator.SetOutputDirectory();
         }
     }
 }

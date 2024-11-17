@@ -12,10 +12,10 @@ namespace RD_PowerMorph_Generator.Helpers {
         private readonly ToolTip _toolTip;
         private readonly VisualIndicatorController _visualIndicatorController;
 
-        public OnlineLinksWorker(FormMain formMain) {
+        public OnlineLinksWorker(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
             _toolTip = new ToolTip();
-            _visualIndicatorController = new VisualIndicatorController(_formMain);
+            _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
         }
 
         public void SetAllOnlineLinks() {

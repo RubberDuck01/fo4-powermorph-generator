@@ -10,9 +10,9 @@ namespace RD_PowerMorph_Generator.Helpers {
         private readonly FormMain _formMain;
         private readonly ToolTip _toolTip;
 
-        public LabelsWorker(FormMain formMain) {
+        public LabelsWorker(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
-            _toolTip = new ToolTip();
+            _toolTip = sharedToolTip;
         }
 
         public void SetInitialLabelCaptions() {
@@ -60,6 +60,15 @@ namespace RD_PowerMorph_Generator.Helpers {
             if (label != null) {
                 label.Text = lblText;
                 label.ForeColor = System.Drawing.Color.Green;
+                _toolTip.SetToolTip(label, lblCaption);
+            }
+        }
+
+        public void SetLabelInfoTextAlt(string lblName, string lblText, string lblCaption) {
+            var label = _formMain.Controls.Find(lblName, true).FirstOrDefault() as Label;
+            if (label != null) {
+                label.Text = lblText;
+                label.ForeColor = System.Drawing.Color.Blue;
                 _toolTip.SetToolTip(label, lblCaption);
             }
         }

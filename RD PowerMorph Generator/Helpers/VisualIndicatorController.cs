@@ -9,9 +9,9 @@ namespace RD_PowerMorph_Generator.Helpers {
         private readonly FormMain _formMain;
         private readonly ToolTip _toolTip;
 
-        public VisualIndicatorController(FormMain formMain) {
+        public VisualIndicatorController(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
-            _toolTip = new ToolTip();
+            _toolTip = sharedToolTip;
         }
 
         public void SetInitial() {
@@ -86,6 +86,7 @@ namespace RD_PowerMorph_Generator.Helpers {
         public void SetPbCaption(string pbName, string caption) {
             var pb = _formMain.Controls.Find(pbName, true).FirstOrDefault() as PictureBox;
             if (pb != null) {
+                _toolTip.SetToolTip(pb, null);
                 _toolTip.SetToolTip(pb, caption);
             }
         }

@@ -312,6 +312,7 @@
             btnSelectOutputDir.TabIndex = 10;
             btnSelectOutputDir.Text = "Select Output Directory";
             btnSelectOutputDir.UseVisualStyleBackColor = true;
+            btnSelectOutputDir.Click += btnSelectOutputDir_Click;
             // 
             // lblGeneratorOutputPath
             // 

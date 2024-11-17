@@ -16,11 +16,11 @@ namespace RD_PowerMorph_Generator.Controllers {
         private List<XDocument> _bodyXmls;
         private XDocument _targetBodyXml;
 
-        public BodyLoader(FormMain formMain) {
+        public BodyLoader(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
-            _controlsCommander = new ControlsCommander(_formMain);
-            _labelsWorker = new LabelsWorker(_formMain);
-            _visualIndicatorController = new VisualIndicatorController(_formMain);
+            _controlsCommander = new ControlsCommander(_formMain, sharedToolTip);
+            _labelsWorker = new LabelsWorker(_formMain, sharedToolTip);
+            _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
             _bodyXmls = new List<XDocument>();
             _targetBodyXml = new XDocument();
         }

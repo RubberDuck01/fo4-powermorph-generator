@@ -10,10 +10,10 @@ namespace RD_PowerMorph_Generator.Helpers {
         private readonly VisualIndicatorController _visualIndicatorController;
         private readonly LabelsWorker _labelsWorker;
 
-        public ControlsCommander(FormMain formMain) {
+        public ControlsCommander(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
-            _visualIndicatorController = new VisualIndicatorController(_formMain);
-            _labelsWorker = new LabelsWorker(_formMain);
+            _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
+            _labelsWorker = new LabelsWorker(_formMain, sharedToolTip);
         }
 
         public void EnableButton(string btnName) {
