@@ -64,11 +64,11 @@
             lblInfoTotalXmls = new Label();
             label8 = new Label();
             btnHelpLoadedXmlsData = new Button();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
+            pbWatermark = new PictureBox();
+            pbGitHub = new PictureBox();
+            pbNexus = new PictureBox();
+            pbKoFi = new PictureBox();
+            pbRedStar = new PictureBox();
             gbLoadXmlsControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbDefBodyLoad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbXmlsLoadStatus).BeginInit();
@@ -80,11 +80,11 @@
             ((System.ComponentModel.ISupportInitialize)pbAppTitle1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAppTitle2).BeginInit();
             gbAppLoadData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbWatermark).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbGitHub).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbNexus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbKoFi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbRedStar).BeginInit();
             SuspendLayout();
             // 
             // lblVer
@@ -534,65 +534,65 @@
             btnHelpLoadedXmlsData.Text = "?";
             btnHelpLoadedXmlsData.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pbWatermark
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 447);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 41);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 12;
-            pictureBox1.TabStop = false;
+            pbWatermark.BackColor = Color.Transparent;
+            pbWatermark.BackgroundImageLayout = ImageLayout.Stretch;
+            pbWatermark.Image = (Image)resources.GetObject("pbWatermark.Image");
+            pbWatermark.Location = new Point(12, 447);
+            pbWatermark.Name = "pbWatermark";
+            pbWatermark.Size = new Size(200, 41);
+            pbWatermark.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbWatermark.TabIndex = 12;
+            pbWatermark.TabStop = false;
             // 
-            // pictureBox2
+            // pbGitHub
             // 
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Image = Properties.Resources.rd_github_default;
-            pictureBox2.Location = new Point(290, 447);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(116, 35);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 13;
-            pictureBox2.TabStop = false;
+            pbGitHub.BackColor = Color.Transparent;
+            pbGitHub.BackgroundImageLayout = ImageLayout.Stretch;
+            pbGitHub.Image = Properties.Resources.rd_github_default;
+            pbGitHub.Location = new Point(290, 447);
+            pbGitHub.Name = "pbGitHub";
+            pbGitHub.Size = new Size(116, 35);
+            pbGitHub.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbGitHub.TabIndex = 13;
+            pbGitHub.TabStop = false;
             // 
-            // pictureBox3
+            // pbNexus
             // 
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Image = Properties.Resources.rd_nexus_default;
-            pictureBox3.Location = new Point(412, 447);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(116, 35);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 14;
-            pictureBox3.TabStop = false;
+            pbNexus.BackColor = Color.Transparent;
+            pbNexus.BackgroundImageLayout = ImageLayout.Stretch;
+            pbNexus.Image = Properties.Resources.rd_nexus_default;
+            pbNexus.Location = new Point(412, 447);
+            pbNexus.Name = "pbNexus";
+            pbNexus.Size = new Size(116, 35);
+            pbNexus.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbNexus.TabIndex = 14;
+            pbNexus.TabStop = false;
             // 
-            // pictureBox4
+            // pbKoFi
             // 
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Image = Properties.Resources.rd_kofi_default;
-            pictureBox4.Location = new Point(534, 447);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(116, 35);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 15;
-            pictureBox4.TabStop = false;
+            pbKoFi.BackColor = Color.Transparent;
+            pbKoFi.BackgroundImageLayout = ImageLayout.Stretch;
+            pbKoFi.Image = Properties.Resources.rd_kofi_default;
+            pbKoFi.Location = new Point(534, 447);
+            pbKoFi.Name = "pbKoFi";
+            pbKoFi.Size = new Size(116, 35);
+            pbKoFi.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbKoFi.TabIndex = 15;
+            pbKoFi.TabStop = false;
             // 
-            // pictureBox5
+            // pbRedStar
             // 
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(218, 441);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(50, 47);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 16;
-            pictureBox5.TabStop = false;
+            pbRedStar.BackColor = Color.Transparent;
+            pbRedStar.BackgroundImageLayout = ImageLayout.Stretch;
+            pbRedStar.Image = (Image)resources.GetObject("pbRedStar.Image");
+            pbRedStar.Location = new Point(218, 441);
+            pbRedStar.Name = "pbRedStar";
+            pbRedStar.Size = new Size(50, 47);
+            pbRedStar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbRedStar.TabIndex = 16;
+            pbRedStar.TabStop = false;
             // 
             // FormMain
             // 
@@ -600,11 +600,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(844, 491);
-            Controls.Add(pictureBox5);
-            Controls.Add(pictureBox4);
-            Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
+            Controls.Add(pbRedStar);
+            Controls.Add(pbKoFi);
+            Controls.Add(pbNexus);
+            Controls.Add(pbGitHub);
+            Controls.Add(pbWatermark);
             Controls.Add(gbAppLoadData);
             Controls.Add(pbAppTitle2);
             Controls.Add(pbAppTitle1);
@@ -632,11 +632,11 @@
             ((System.ComponentModel.ISupportInitialize)pbAppTitle2).EndInit();
             gbAppLoadData.ResumeLayout(false);
             gbAppLoadData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbWatermark).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbGitHub).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbNexus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbKoFi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbRedStar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -682,10 +682,10 @@
         private Label label8;
         private Label lblInfoGeneratorOutputPath;
         private Label lblInfoGeneratorOutput;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
+        private PictureBox pbWatermark;
+        private PictureBox pbGitHub;
+        private PictureBox pbNexus;
+        private PictureBox pbKoFi;
+        private PictureBox pbRedStar;
     }
 }
