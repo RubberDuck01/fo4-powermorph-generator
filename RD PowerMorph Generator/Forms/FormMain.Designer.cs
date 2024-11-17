@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            lblWatermark = new Label();
             lblVer = new Label();
             btnXmlsLoad = new Button();
             lblXmlsPathText = new Label();
@@ -65,8 +64,11 @@
             lblInfoTotalXmls = new Label();
             label8 = new Label();
             btnHelpLoadedXmlsData = new Button();
-            lblLinkGithub = new LinkLabel();
-            lblLinkNexus = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
             gbLoadXmlsControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbDefBodyLoad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbXmlsLoadStatus).BeginInit();
@@ -78,23 +80,17 @@
             ((System.ComponentModel.ISupportInitialize)pbAppTitle1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAppTitle2).BeginInit();
             gbAppLoadData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
-            // 
-            // lblWatermark
-            // 
-            lblWatermark.AutoSize = true;
-            lblWatermark.BackColor = Color.Transparent;
-            lblWatermark.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblWatermark.Location = new Point(12, 443);
-            lblWatermark.Name = "lblWatermark";
-            lblWatermark.Size = new Size(159, 19);
-            lblWatermark.TabIndex = 0;
-            lblWatermark.Text = "By: Rubber Duck";
             // 
             // lblVer
             // 
             lblVer.AutoSize = true;
-            lblVer.Location = new Point(735, 447);
+            lblVer.Location = new Point(735, 467);
             lblVer.Name = "lblVer";
             lblVer.Size = new Size(97, 15);
             lblVer.TabIndex = 1;
@@ -538,36 +534,77 @@
             btnHelpLoadedXmlsData.Text = "?";
             btnHelpLoadedXmlsData.UseVisualStyleBackColor = true;
             // 
-            // lblLinkGithub
+            // pictureBox1
             // 
-            lblLinkGithub.AutoSize = true;
-            lblLinkGithub.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblLinkGithub.Location = new Point(177, 443);
-            lblLinkGithub.Name = "lblLinkGithub";
-            lblLinkGithub.Size = new Size(69, 19);
-            lblLinkGithub.TabIndex = 10;
-            lblLinkGithub.TabStop = true;
-            lblLinkGithub.Text = "GitHub";
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 447);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(200, 41);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 12;
+            pictureBox1.TabStop = false;
             // 
-            // lblLinkNexus
+            // pictureBox2
             // 
-            lblLinkNexus.AutoSize = true;
-            lblLinkNexus.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblLinkNexus.Location = new Point(252, 443);
-            lblLinkNexus.Name = "lblLinkNexus";
-            lblLinkNexus.Size = new Size(109, 19);
-            lblLinkNexus.TabIndex = 11;
-            lblLinkNexus.TabStop = true;
-            lblLinkNexus.Text = "Nexus page";
+            pictureBox2.BackColor = Color.Transparent;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox2.Image = Properties.Resources.rd_github_default;
+            pictureBox2.Location = new Point(290, 447);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(116, 35);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 13;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox3.Image = Properties.Resources.rd_nexus_default;
+            pictureBox3.Location = new Point(412, 447);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(116, 35);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 14;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox4.Image = Properties.Resources.rd_kofi_default;
+            pictureBox4.Location = new Point(534, 447);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(116, 35);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 15;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(218, 441);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(50, 47);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 16;
+            pictureBox5.TabStop = false;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(844, 471);
-            Controls.Add(lblLinkNexus);
-            Controls.Add(lblLinkGithub);
+            ClientSize = new Size(844, 491);
+            Controls.Add(pictureBox5);
+            Controls.Add(pictureBox4);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
             Controls.Add(gbAppLoadData);
             Controls.Add(pbAppTitle2);
             Controls.Add(pbAppTitle1);
@@ -575,7 +612,6 @@
             Controls.Add(gbGenerateBodyGenFiles);
             Controls.Add(gbLoadXmlsControls);
             Controls.Add(lblVer);
-            Controls.Add(lblWatermark);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
@@ -596,13 +632,16 @@
             ((System.ComponentModel.ISupportInitialize)pbAppTitle2).EndInit();
             gbAppLoadData.ResumeLayout(false);
             gbAppLoadData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lblWatermark;
         private Label lblVer;
         private Button btnXmlsLoad;
         private Label lblXmlsPathText;
@@ -637,13 +676,16 @@
         private Button btnHelpGenerate;
         private Button btnHelpUpdate;
         private Button btnHelpLoadedXmlsData;
-        private LinkLabel lblLinkGithub;
-        private LinkLabel lblLinkNexus;
         private Label lblInfoDefaultBodyName;
         private Label label10;
         private Label lblInfoTotalXmls;
         private Label label8;
         private Label lblInfoGeneratorOutputPath;
         private Label lblInfoGeneratorOutput;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
     }
 }
