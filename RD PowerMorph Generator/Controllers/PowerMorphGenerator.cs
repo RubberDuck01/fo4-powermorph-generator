@@ -54,7 +54,76 @@ namespace RD_PowerMorph_Generator.Controllers {
 
         // Generate BodyGen files - master logic:
         public void GenerateBodyGenFiles() {
+            GenerateMorphsIni();
+            // GenerateTemplatesIni();
+        }
 
+        // morphs.ini generation:
+        public void GenerateMorphsIni() {
+            string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
+            bool morphsIniExists = File.Exists(morphsIniPath);
+
+            using (var morphsFile = new StreamWriter(morphsIniPath, true, Encoding.UTF8)) {
+                if (!morphsIniExists) {
+                    morphsFile.WriteLine("All|Female|HumanRace=");
+                }
+
+                foreach (var xmlDoc in _bodyXmls) {
+                    var presetList = xmlDoc.Descendants("Preset");
+
+                    foreach (var preset in presetList) {
+                        string presetName = preset.Attribute("name")!.Value;
+
+                        if (string.IsNullOrEmpty(presetName)) {
+                            continue;
+                        }
+
+                        morphsFile.WriteLine($"{presetName}|");
+                    }
+                }
+            }
+        }
+
+        public void GenerateTemplatesIni() {
+            string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
+
+            using (var templatesFile = new StreamWriter(templatesIniPath, true, Encoding.UTF8)) {
+                foreach (var xmlDoc in _bodyXmls) {
+                    var presetList = xmlDoc.Descendants("Preset");
+
+                    foreach (var preset in presetList) {
+                        string presetName = preset.Attribute("name")!.Value;
+
+                        if (string.IsNullOrEmpty(presetName)) {
+                            continue;
+                        }
+
+                        templatesFile.Write($"{presetName}=");
+
+                        var sliderList = preset.Descendants("SetSlider").ToList();
+                        List<string> sliderDataList = new List<string>();
+
+                        foreach (var slider in sliderList) {
+                            string sliderName = slider.Attribute("name")!.Value;
+                            if (string.IsNullOrEmpty(sliderName)) {
+                                continue;
+                            }
+
+                            if (!double.TryParse(slider.Attribute("value")?.Value, out double value)) {
+                                continue;
+                            }
+
+                            double v = value / 100.0;
+                            string sliderData = $"{sliderName}@{v}";
+
+                            sliderDataList.Add(sliderData);
+                        }
+
+                        // write:
+                        templatesFile.WriteLine(string.Join(",", sliderDataList));
+                    }
+                }
+            }
         }
     }
 }
