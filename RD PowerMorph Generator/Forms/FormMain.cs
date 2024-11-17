@@ -44,7 +44,7 @@ namespace RD_PowerMorph_Generator
             _onlineLinksWorker.SetAllOnlineLinks();
 
             // Initialize the PowerMorphGenerator:
-            _powerMorphGenerator = new PowerMorphGenerator(this, _sharedToolTip);
+            _powerMorphGenerator = new PowerMorphGenerator(this, _sharedToolTip, pgBarGenerate);
         }
 
         private void ShowHelpMessage(int btnId) {
@@ -131,6 +131,10 @@ namespace RD_PowerMorph_Generator
 
         private void btnSelectOutputDir_Click(object sender, EventArgs e) {
             _powerMorphGenerator.SetOutputDirectory();
+        }
+
+        private async void btnGenerateBodyGenFiles_Click(object sender, EventArgs e) {
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync();
         }
     }
 }

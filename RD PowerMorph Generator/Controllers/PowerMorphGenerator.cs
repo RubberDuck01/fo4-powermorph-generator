@@ -14,14 +14,16 @@ namespace RD_PowerMorph_Generator.Controllers {
         private readonly VisualIndicatorController _visualIndicatorController;
         private List<XDocument> _bodyXmls;
         private string _outputDirectory;
+        private readonly ProgressBar _progressBar;
 
-        public PowerMorphGenerator(FormMain formMain, ToolTip sharedToolTip) {
+        public PowerMorphGenerator(FormMain formMain, ToolTip sharedToolTip, ProgressBar progressBar) {
             _formMain = formMain;
             _controlsCommander = new ControlsCommander(_formMain, sharedToolTip);
             _labelsWorker = new LabelsWorker(_formMain, sharedToolTip);
             _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
             _bodyXmls = new List<XDocument>();
             _outputDirectory = string.Empty;
+            _progressBar = progressBar;
         }
 
         public void SetBodyXmls(List<XDocument> bodyXmls) {
@@ -53,13 +55,38 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public void GenerateBodyGenFiles() {
-            GenerateMorphsIni();
+        public async Task GenerateBodyGenFilesAsync() {
+            // work start
+            _visualIndicatorController.SetPbWorking("pbGeneratorState");
+            _progressBar.Minimum = 0;
+            _progressBar.Value = 0;
+            int totalPresets = _bodyXmls.Sum(xmlDoc => xmlDoc.Descendants("Preset").Count());
+            _progressBar.Maximum = totalPresets;
+
+            var progress = new Progress<string>(message => {
+                _progressBar.Value += 1;
+                _labelsWorker.SetLabelInfoTextAlt("lblGeneratorState", $"Processing: {message}", "Generating files, please wait...");
+            });
+
+            await Task.Run(() => {
+                GenerateMorphsIni(progress);
+                GenerateTemplatesIni(progress);
+            });
+
+            // work completed:
+            _visualIndicatorController.SetPbOk("pbGeneratorState");
+            _labelsWorker.SetLabelInfoText("lblGeneratorState", "Generator finished!", "All BodyGen files generated successfully!");
+            _progressBar.Value = _progressBar.Maximum;
+
+            // if target body is loaded, and generator finished successfully, enable the update group:
+            // _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
+
+            // GenerateMorphsIni();
             // GenerateTemplatesIni();
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni() {
+        public void GenerateMorphsIni(IProgress<string> progress) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             bool morphsIniExists = File.Exists(morphsIniPath);
 
@@ -79,12 +106,13 @@ namespace RD_PowerMorph_Generator.Controllers {
                         }
 
                         morphsFile.WriteLine($"{presetName}|");
+                        progress.Report(presetName);
                     }
                 }
             }
         }
 
-        public void GenerateTemplatesIni() {
+        public void GenerateTemplatesIni(IProgress<string> progress) {
             string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
 
             using (var templatesFile = new StreamWriter(templatesIniPath, true, Encoding.UTF8)) {
@@ -121,6 +149,7 @@ namespace RD_PowerMorph_Generator.Controllers {
 
                         // write:
                         templatesFile.WriteLine(string.Join(",", sliderDataList));
+                        progress.Report(presetName);
                     }
                 }
             }

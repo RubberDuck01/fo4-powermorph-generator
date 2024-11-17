@@ -281,6 +281,7 @@
             btnGenerateBodyGenFiles.TabIndex = 14;
             btnGenerateBodyGenFiles.Text = "Generate BodyGen Files";
             btnGenerateBodyGenFiles.UseVisualStyleBackColor = true;
+            btnGenerateBodyGenFiles.Click += btnGenerateBodyGenFiles_Click;
             // 
             // lblGeneratorStateText
             // 
