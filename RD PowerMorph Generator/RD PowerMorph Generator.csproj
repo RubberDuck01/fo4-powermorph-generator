@@ -10,8 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Background\**" />
+    <EmbeddedResource Remove="Resources\Background\**" />
+    <None Remove="Resources\Background\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Resources\Icon\" />
-    <Folder Include="Resources\Background\" />
     <Folder Include="Resources\Title\" />
     <Folder Include="Resources\PNGs\" />
   </ItemGroup>

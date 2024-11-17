@@ -134,6 +134,7 @@ namespace RD_PowerMorph_Generator
         }
 
         private async void btnGenerateBodyGenFiles_Click(object sender, EventArgs e) {
+            _powerMorphGenerator.SetBodyXmls(_bodyLoader.GetAllBodyXmls());
             await _powerMorphGenerator.GenerateBodyGenFilesAsync();
         }
     }
