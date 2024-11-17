@@ -557,6 +557,9 @@
             pbGitHub.SizeMode = PictureBoxSizeMode.StretchImage;
             pbGitHub.TabIndex = 13;
             pbGitHub.TabStop = false;
+            pbGitHub.MouseDown += pbGitHub_MouseDown;
+            pbGitHub.MouseEnter += pbGitHub_MouseEnter;
+            pbGitHub.MouseLeave += pbGitHub_MouseLeave;
             // 
             // pbNexus
             // 
@@ -569,6 +572,9 @@
             pbNexus.SizeMode = PictureBoxSizeMode.StretchImage;
             pbNexus.TabIndex = 14;
             pbNexus.TabStop = false;
+            pbNexus.MouseDown += pbNexus_MouseDown;
+            pbNexus.MouseEnter += pbNexus_MouseEnter;
+            pbNexus.MouseLeave += pbNexus_MouseLeave;
             // 
             // pbKoFi
             // 
@@ -581,6 +587,9 @@
             pbKoFi.SizeMode = PictureBoxSizeMode.StretchImage;
             pbKoFi.TabIndex = 15;
             pbKoFi.TabStop = false;
+            pbKoFi.MouseDown += pbKoFi_MouseDown;
+            pbKoFi.MouseEnter += pbKoFi_MouseEnter;
+            pbKoFi.MouseLeave += pbKoFi_MouseLeave;
             // 
             // pbRedStar
             // 

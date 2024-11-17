@@ -9,6 +9,7 @@ namespace RD_PowerMorph_Generator
         private readonly VisualIndicatorController _visualIndicatorController;
         private readonly BodyLoader _bodyLoader;
         private readonly LabelsWorker _labelsWorker;
+        private readonly OnlineLinksWorker _onlineLinksWorker;
 
         public FormMain() {
             InitializeComponent();
@@ -34,6 +35,10 @@ namespace RD_PowerMorph_Generator
 
             // Initialize the BodyLoader:
             _bodyLoader = new BodyLoader(this);
+
+            // Initialize the OnlineLinksWorker:
+            _onlineLinksWorker = new OnlineLinksWorker(this);
+            _onlineLinksWorker.SetAllOnlineLinks();
         }
 
         private void ShowHelpMessage(int btnId) {
@@ -46,6 +51,76 @@ namespace RD_PowerMorph_Generator
 
         private void btnLoadDefaultBody_Click(object sender, EventArgs e) {
             _bodyLoader.LoadTargetBodyXml();
+        }
+
+        // Events for custom buttons (Github, Nexus, Ko-Fi):
+        private void pbGitHub_MouseEnter(object sender, EventArgs e) {
+            var pbGitHub = sender as PictureBox;
+            if (pbGitHub != null) {
+                pbGitHub.Image = Properties.Resources.rd_github_hover;
+            }
+        }
+
+        private void pbGitHub_MouseLeave(object sender, EventArgs e) {
+            var pbGitHub = sender as PictureBox;
+            if (pbGitHub != null) {
+                pbGitHub.Image = Properties.Resources.rd_github_default;
+            }
+        }
+
+        private void pbGitHub_MouseDown(object sender, MouseEventArgs e) {
+            _onlineLinksWorker.OpenGithubLink();
+
+            var pbGitHub = sender as PictureBox;
+            if (pbGitHub != null) {
+                pbGitHub.Image = Properties.Resources.rd_github_click;
+            }
+        }
+
+        private void pbNexus_MouseEnter(object sender, EventArgs e) {
+            var pbNexus = sender as PictureBox;
+            if (pbNexus != null) {
+                pbNexus.Image = Properties.Resources.rd_nexus_hover;
+            }
+        }
+
+        private void pbNexus_MouseLeave(object sender, EventArgs e) {
+            var pbNexus = sender as PictureBox;
+            if (pbNexus != null) {
+                pbNexus.Image = Properties.Resources.rd_nexus_default;
+            }
+        }
+
+        private void pbNexus_MouseDown(object sender, MouseEventArgs e) {
+            _onlineLinksWorker.OpenNexusLink();
+
+            var pbNexus = sender as PictureBox;
+            if (pbNexus != null) {
+                pbNexus.Image = Properties.Resources.rd_nexus_click;
+            }
+        }
+
+        private void pbKoFi_MouseEnter(object sender, EventArgs e) {
+            var pbKoFi = sender as PictureBox;
+            if (pbKoFi != null) {
+                pbKoFi.Image = Properties.Resources.rd_kofi_hover;
+            }
+        }
+
+        private void pbKoFi_MouseLeave(object sender, EventArgs e) {
+            var pbKoFi = sender as PictureBox;
+            if (pbKoFi != null) {
+                pbKoFi.Image = Properties.Resources.rd_kofi_default;
+            }
+        }
+
+        private void pbKoFi_MouseDown(object sender, MouseEventArgs e) {
+            _onlineLinksWorker.OpenKoFiLink();
+
+            var pbKoFi = sender as PictureBox;
+            if (pbKoFi != null) {
+                pbKoFi.Image = Properties.Resources.rd_kofi_click;
+            }
         }
     }
 }
