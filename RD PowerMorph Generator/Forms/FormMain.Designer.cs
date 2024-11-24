@@ -246,15 +246,15 @@
             // tbRandomFilter
             // 
             tbRandomFilter.BackColor = SystemColors.InactiveBorder;
-            tbRandomFilter.Location = new Point(400, 143);
+            tbRandomFilter.Location = new Point(436, 145);
             tbRandomFilter.Name = "tbRandomFilter";
-            tbRandomFilter.Size = new Size(136, 23);
+            tbRandomFilter.Size = new Size(100, 23);
             tbRandomFilter.TabIndex = 22;
             // 
             // radioBtnFilterSmall
             // 
             radioBtnFilterSmall.AutoSize = true;
-            radioBtnFilterSmall.Location = new Point(447, 114);
+            radioBtnFilterSmall.Location = new Point(483, 116);
             radioBtnFilterSmall.Name = "radioBtnFilterSmall";
             radioBtnFilterSmall.Size = new Size(53, 19);
             radioBtnFilterSmall.TabIndex = 21;
@@ -265,7 +265,7 @@
             // 
             radioBtnFilterBig.AutoSize = true;
             radioBtnFilterBig.Checked = true;
-            radioBtnFilterBig.Location = new Point(400, 114);
+            radioBtnFilterBig.Location = new Point(436, 116);
             radioBtnFilterBig.Name = "radioBtnFilterBig";
             radioBtnFilterBig.Size = new Size(41, 19);
             radioBtnFilterBig.TabIndex = 20;
@@ -277,17 +277,17 @@
             // 
             lblRandomFilter.AutoSize = true;
             lblRandomFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRandomFilter.Location = new Point(316, 146);
+            lblRandomFilter.Location = new Point(331, 148);
             lblRandomFilter.Name = "lblRandomFilter";
-            lblRandomFilter.Size = new Size(78, 15);
+            lblRandomFilter.Size = new Size(99, 15);
             lblRandomFilter.TabIndex = 19;
-            lblRandomFilter.Text = "Randomness:";
+            lblRandomFilter.Text = "Randomness (%):";
             // 
             // lblBigSmallFilter
             // 
             lblBigSmallFilter.AutoSize = true;
             lblBigSmallFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBigSmallFilter.Location = new Point(337, 116);
+            lblBigSmallFilter.Location = new Point(373, 118);
             lblBigSmallFilter.Name = "lblBigSmallFilter";
             lblBigSmallFilter.Size = new Size(57, 15);
             lblBigSmallFilter.TabIndex = 18;
@@ -357,7 +357,7 @@
             // 
             pbInisOutputDir.BackColor = Color.Transparent;
             pbInisOutputDir.BackgroundImageLayout = ImageLayout.Stretch;
-            pbInisOutputDir.Location = new Point(221, 44);
+            pbInisOutputDir.Location = new Point(221, 37);
             pbInisOutputDir.Name = "pbInisOutputDir";
             pbInisOutputDir.Size = new Size(45, 45);
             pbInisOutputDir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -367,7 +367,7 @@
             // btnSelectOutputDir
             // 
             btnSelectOutputDir.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSelectOutputDir.Location = new Point(6, 44);
+            btnSelectOutputDir.Location = new Point(6, 37);
             btnSelectOutputDir.Name = "btnSelectOutputDir";
             btnSelectOutputDir.Size = new Size(209, 45);
             btnSelectOutputDir.TabIndex = 10;
