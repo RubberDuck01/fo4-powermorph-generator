@@ -36,6 +36,8 @@
             btnLoadDefaultBody = new Button();
             btnHelpLoadXmls = new Button();
             gbGenerateBodyGenFiles = new GroupBox();
+            cboxPlayerMorphs = new ComboBox();
+            cbAllowChangePlayer = new CheckBox();
             tbRandomFilter = new TextBox();
             radioBtnFilterSmall = new RadioButton();
             radioBtnFilterBig = new RadioButton();
@@ -220,6 +222,8 @@
             // gbGenerateBodyGenFiles
             // 
             gbGenerateBodyGenFiles.BackColor = Color.Transparent;
+            gbGenerateBodyGenFiles.Controls.Add(cboxPlayerMorphs);
+            gbGenerateBodyGenFiles.Controls.Add(cbAllowChangePlayer);
             gbGenerateBodyGenFiles.Controls.Add(tbRandomFilter);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterSmall);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterBig);
@@ -243,10 +247,30 @@
             gbGenerateBodyGenFiles.TabStop = false;
             gbGenerateBodyGenFiles.Text = "Generate BodyGen Files:";
             // 
+            // cboxPlayerMorphs
+            // 
+            cboxPlayerMorphs.Enabled = false;
+            cboxPlayerMorphs.FormattingEnabled = true;
+            cboxPlayerMorphs.Location = new Point(331, 138);
+            cboxPlayerMorphs.Name = "cboxPlayerMorphs";
+            cboxPlayerMorphs.Size = new Size(205, 23);
+            cboxPlayerMorphs.TabIndex = 24;
+            // 
+            // cbAllowChangePlayer
+            // 
+            cbAllowChangePlayer.AutoSize = true;
+            cbAllowChangePlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbAllowChangePlayer.Location = new Point(331, 116);
+            cbAllowChangePlayer.Name = "cbAllowChangePlayer";
+            cbAllowChangePlayer.Size = new Size(149, 19);
+            cbAllowChangePlayer.TabIndex = 23;
+            cbAllowChangePlayer.Text = "Allow morphs to Player";
+            cbAllowChangePlayer.UseVisualStyleBackColor = true;
+            // 
             // tbRandomFilter
             // 
             tbRandomFilter.BackColor = SystemColors.InactiveBorder;
-            tbRandomFilter.Location = new Point(436, 145);
+            tbRandomFilter.Location = new Point(436, 66);
             tbRandomFilter.Name = "tbRandomFilter";
             tbRandomFilter.Size = new Size(100, 23);
             tbRandomFilter.TabIndex = 22;
@@ -254,7 +278,7 @@
             // radioBtnFilterSmall
             // 
             radioBtnFilterSmall.AutoSize = true;
-            radioBtnFilterSmall.Location = new Point(483, 116);
+            radioBtnFilterSmall.Location = new Point(483, 37);
             radioBtnFilterSmall.Name = "radioBtnFilterSmall";
             radioBtnFilterSmall.Size = new Size(53, 19);
             radioBtnFilterSmall.TabIndex = 21;
@@ -265,7 +289,7 @@
             // 
             radioBtnFilterBig.AutoSize = true;
             radioBtnFilterBig.Checked = true;
-            radioBtnFilterBig.Location = new Point(436, 116);
+            radioBtnFilterBig.Location = new Point(436, 37);
             radioBtnFilterBig.Name = "radioBtnFilterBig";
             radioBtnFilterBig.Size = new Size(41, 19);
             radioBtnFilterBig.TabIndex = 20;
@@ -277,7 +301,7 @@
             // 
             lblRandomFilter.AutoSize = true;
             lblRandomFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRandomFilter.Location = new Point(331, 148);
+            lblRandomFilter.Location = new Point(331, 69);
             lblRandomFilter.Name = "lblRandomFilter";
             lblRandomFilter.Size = new Size(99, 15);
             lblRandomFilter.TabIndex = 19;
@@ -287,7 +311,7 @@
             // 
             lblBigSmallFilter.AutoSize = true;
             lblBigSmallFilter.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBigSmallFilter.Location = new Point(373, 118);
+            lblBigSmallFilter.Location = new Point(373, 39);
             lblBigSmallFilter.Name = "lblBigSmallFilter";
             lblBigSmallFilter.Size = new Size(57, 15);
             lblBigSmallFilter.TabIndex = 18;
@@ -669,6 +693,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(844, 491);
             Controls.Add(pbRedStar);
@@ -763,5 +788,7 @@
         private Label lblRandomFilter;
         private Label lblBigSmallFilter;
         private TextBox tbRandomFilter;
+        private CheckBox cbAllowChangePlayer;
+        private ComboBox cboxPlayerMorphs;
     }
 }
