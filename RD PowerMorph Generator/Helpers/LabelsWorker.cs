@@ -42,6 +42,13 @@ namespace RD_PowerMorph_Generator.Helpers {
             }
         }
 
+        public void SetComboBoxCaption(string cmbName, string cmbCaption) {
+            var comboBox = _formMain.Controls.Find(cmbName, true).FirstOrDefault() as ComboBox;
+            if (comboBox != null) {
+                _toolTip.SetToolTip(comboBox, cmbCaption);
+            }
+        }
+
         public void SetLabelPathOk(string lblName, string txtPath) {
             var label = _formMain.Controls.Find(lblName, true).FirstOrDefault() as Label;
             if (label != null) {
