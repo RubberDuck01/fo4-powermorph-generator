@@ -134,8 +134,41 @@ namespace RD_PowerMorph_Generator
         }
 
         private async void btnGenerateBodyGenFiles_Click(object sender, EventArgs e) {
+            // Get loaded body presets:
             _powerMorphGenerator.SetBodyXmls(_bodyLoader.GetAllBodyXmls());
-            await _powerMorphGenerator.GenerateBodyGenFilesAsync();
+            
+            // Handle size filter:
+            string sizeFilter = "big"; // default radio checked
+            if (radioBtnFilterSmall.Checked) {
+                sizeFilter = "small";
+            } else if (radioBtnFilterBig.Checked) {
+                sizeFilter = "big";
+            }
+
+            // Get deviation randomness:
+            if (!double.TryParse(tbRandomFilter.Text, out double deviation)) {
+                MessageBox.Show("Something went wrong when parsing randomness percentage.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (deviation < 0 || deviation > 100) {
+                MessageBox.Show("Randomness percentage (deviation) must be in range 0 to 100.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation);
+        }
+
+        private void tbRandomFilter_KeyPress(object sender, KeyPressEventArgs e) {
+            // Allow only digits, control chars and one decimal point:
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.') {
+                e.Handled = true;
+            }
+
+            // Only allow one decimal point:
+            if (e.KeyChar == '.' && ((sender as TextBox)?.Text.IndexOf('.') > -1)) {
+                e.Handled = true;
+            }
         }
     }
 }

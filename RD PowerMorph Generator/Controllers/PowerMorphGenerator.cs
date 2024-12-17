@@ -55,7 +55,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public async Task GenerateBodyGenFilesAsync() {
+        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation) {
             // work start
             _visualIndicatorController.SetPbWorking("pbGeneratorState");
             _progressBar.Minimum = 0;
@@ -70,8 +70,8 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             try {
                 await Task.Run(() => {
-                    GenerateMorphsIni(progress);
-                    GenerateTemplatesIni(progress);
+                    GenerateMorphsIni(progress, sizeFilter);
+                    GenerateTemplatesIni(progress, sizeFilter, deviation);
                 });
             } catch (Exception ex) {
                 MessageBox.Show($"An error occurred during the generation of BodyGen files:\n{ex.Message}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -95,19 +95,14 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, double deviation, int randomnessPercentage) {
+        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             var morphsFileBuilder = new StringBuilder("All|Female|HumanRace=");
-            var random = new Random();
 
             foreach (var xmlDoc in _bodyXmls) {
                 var presetList = xmlDoc.Descendants("Preset");
 
                 foreach (var preset in presetList) {
-                    if (random.Next(0,100) >= randomnessPercentage) {
-                        continue;
-                    }
-                    
                     string? presetName = preset.Attribute("name")?.Value;
                     if (string.IsNullOrEmpty(presetName)) {
                         continue;
@@ -128,28 +123,25 @@ namespace RD_PowerMorph_Generator.Controllers {
             }
         }
 
-        public void GenerateTemplatesIni(IProgress<string> progress, string sizeFilter, double deviation, int randomnessPercentage) {
+        public void GenerateTemplatesIni(IProgress<string> progress, string sizeFilter, double deviation) {
             string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
-            var random = new Random();
 
             using (var templatesFile = new StreamWriter(templatesIniPath, false, Encoding.UTF8)) {
                 foreach (var xmlDoc in _bodyXmls) {
                     var presetList = xmlDoc.Descendants("Preset");
 
                     foreach (var preset in presetList) {
-                        if (random.Next(0, 100) > randomnessPercentage) {
-                            continue;
-                        }
-
-                        string presetName = preset.Attribute("name")!.Value;
-
+                        string? presetName = preset.Attribute("name")!.Value;
                         if (string.IsNullOrEmpty(presetName)) {
                             continue;
                         }
 
-                        templatesFile.Write($"{presetName}=");
+                        var sliderList = preset.Descendants("SetSlider").Where(slider => slider.Attribute("size")?.Value?.ToLower() == sizeFilter.ToLower()).ToList();
+                        if (sliderList.Count == 0) {
+                            continue;
+                        }
 
-                        var sliderList = preset.Descendants("SetSlider").ToList();
+                        templatesFile.Write($"{presetName}=");
                         List<string> sliderDataList = new List<string>();
 
                         foreach (var slider in sliderList) {

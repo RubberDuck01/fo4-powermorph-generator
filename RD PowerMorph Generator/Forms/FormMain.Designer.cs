@@ -274,6 +274,7 @@
             tbRandomFilter.Name = "tbRandomFilter";
             tbRandomFilter.Size = new Size(100, 23);
             tbRandomFilter.TabIndex = 22;
+            tbRandomFilter.KeyPress += tbRandomFilter_KeyPress;
             // 
             // radioBtnFilterSmall
             // 
