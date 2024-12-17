@@ -136,7 +136,7 @@ namespace RD_PowerMorph_Generator
         private async void btnGenerateBodyGenFiles_Click(object sender, EventArgs e) {
             // Get loaded body presets:
             _powerMorphGenerator.SetBodyXmls(_bodyLoader.GetAllBodyXmls());
-            
+
             // Handle size filter:
             string sizeFilter = "big"; // default radio checked
             if (radioBtnFilterSmall.Checked) {
@@ -145,13 +145,10 @@ namespace RD_PowerMorph_Generator
                 sizeFilter = "big";
             }
 
-            // Handle Player morphs:
-            bool disablePlayerMorphs = cbDisableMorphsPlayer.Checked; // true/checked = no player morphs, false/unchecked = player morphs
-
             // Handle randomness (deviation):
             double deviation = 0.0; // default, when tbRandomFilter is empty
             string deviationText = tbRandomFilter.Text.Trim();
-            
+
             if (string.IsNullOrEmpty(deviationText)) {
                 deviation = 0.0; // empty
 
@@ -165,7 +162,19 @@ namespace RD_PowerMorph_Generator
                 return;
             }
 
-            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs);
+            // Handle Player morphs:
+            bool disablePlayerMorphs = cbDisableMorphsPlayer.Checked; // true/checked = no player morphs, false/unchecked = player morphs
+            string? selectedPlayerMorphPreset = null;
+
+            if (!disablePlayerMorphs) {
+                selectedPlayerMorphPreset = cboxPlayerMorphs.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedPlayerMorphPreset)) {
+                    MessageBox.Show("Please select a player morph preset or check the 'Disable Player Morphs' checkbox.", "No Player Morphs Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs, selectedPlayerMorphPreset);
         }
 
         private void tbRandomFilter_KeyPress(object sender, KeyPressEventArgs e) {
@@ -178,6 +187,27 @@ namespace RD_PowerMorph_Generator
             if (e.KeyChar == '.' && ((sender as TextBox)?.Text.IndexOf('.') > -1)) {
                 e.Handled = true;
             }
+        }
+
+        private void cbDisableMorphsPlayer_CheckedChanged(object sender, EventArgs e) {
+            if (cbDisableMorphsPlayer.Checked) {
+                cboxPlayerMorphs.Enabled = false;
+            } else {
+                cboxPlayerMorphs.Enabled = true;
+                PopulatePlayerMorphsComboBox();
+            }
+        }
+
+        private void PopulatePlayerMorphsComboBox() {
+            cboxPlayerMorphs.Items.Clear();
+            cboxPlayerMorphs.Items.Add("(Random body preset)");
+            
+            List<string> presetNames = _bodyLoader.GetLoadedPresetNames(_bodyLoader.GetAllBodyXmls());
+            foreach (string presetName in presetNames) {
+                cboxPlayerMorphs.Items.Add(presetName);
+            }
+
+            cboxPlayerMorphs.SelectedIndex = 0;
         }
     }
 }

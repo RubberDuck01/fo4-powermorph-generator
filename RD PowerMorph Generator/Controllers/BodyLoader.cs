@@ -82,5 +82,21 @@ namespace RD_PowerMorph_Generator.Controllers {
         public XDocument GetTargetBodyXml() {
             return _targetBodyXml;
         }
+
+        public List<string> GetLoadedPresetNames(List<XDocument> BodyPresetXmls) {
+            List<string> presetNames = new List<string>();
+
+            foreach (var xmlDoc in BodyPresetXmls) {
+                var presetList = xmlDoc.Descendants("Preset");
+                foreach (var preset in presetList) {
+                    string? presetName = preset.Attribute("name")?.Value;
+                    if (!string.IsNullOrEmpty(presetName)) {
+                        presetNames.Add(presetName);
+                    }
+                }
+            }
+
+            return presetNames;
+        }
     }
 }

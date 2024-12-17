@@ -55,7 +55,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs) {
+        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs, string selectedPlayerMorphsPreset) {
             // work start
             _visualIndicatorController.SetPbWorking("pbGeneratorState");
             _progressBar.Minimum = 0;
@@ -70,7 +70,7 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             try {
                 await Task.Run(() => {
-                    GenerateMorphsIni(progress, sizeFilter, disablePlayerMorphs);
+                    GenerateMorphsIni(progress, sizeFilter, disablePlayerMorphs, selectedPlayerMorphsPreset);
                     GenerateTemplatesIni(progress, sizeFilter, deviation);
                 });
             } catch (Exception ex) {
@@ -92,7 +92,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, bool disablePlayerMorphs) {
+        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, bool disablePlayerMorphs, string selectedPlayerMorphsPreset) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             var morphsFileBuilder = new StringBuilder();
             morphsFileBuilder.Append("All|Female|HumanRace=");

@@ -268,6 +268,7 @@
             cbDisableMorphsPlayer.TabIndex = 23;
             cbDisableMorphsPlayer.Text = "Disable morphs on Player";
             cbDisableMorphsPlayer.UseVisualStyleBackColor = true;
+            cbDisableMorphsPlayer.CheckedChanged += cbDisableMorphsPlayer_CheckedChanged;
             // 
             // tbRandomFilter
             // 
