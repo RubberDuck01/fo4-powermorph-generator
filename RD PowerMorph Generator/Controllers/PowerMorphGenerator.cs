@@ -95,7 +95,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni(IProgress<string> progress) {
+        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, double deviation, int randomnessPercentage) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             var morphsFileBuilder = new StringBuilder("All|Female|HumanRace=");
 
@@ -119,14 +119,19 @@ namespace RD_PowerMorph_Generator.Controllers {
             }
         }
 
-        public void GenerateTemplatesIni(IProgress<string> progress) {
+        public void GenerateTemplatesIni(IProgress<string> progress, string sizeFilter, double deviation, int randomnessPercentage) {
             string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
+            var random = new Random();
 
             using (var templatesFile = new StreamWriter(templatesIniPath, false, Encoding.UTF8)) {
                 foreach (var xmlDoc in _bodyXmls) {
                     var presetList = xmlDoc.Descendants("Preset");
 
                     foreach (var preset in presetList) {
+                        if (random.Next(0, 100) > randomnessPercentage) {
+                            continue;
+                        }
+
                         string presetName = preset.Attribute("name")!.Value;
 
                         if (string.IsNullOrEmpty(presetName)) {
@@ -148,10 +153,33 @@ namespace RD_PowerMorph_Generator.Controllers {
                                 continue;
                             }
 
-                            double v = value / 100.0;
-                            string sliderData = $"{sliderName}@{v}";
+                            // Apply deviation:
+                            double val_dev_neg = value - deviation;
+                            double val_dev_pos = value + deviation;
+
+                            val_dev_neg = Math.Max(Math.Min(val_dev_neg, 100), 0);
+                            val_dev_pos = Math.Max(Math.Min(val_dev_pos, 100), 0);
+
+                            // double v = value / 100.0;
+                            // string sliderData = $"{sliderName}@{v}";
+
+                            string sliderData;
+                            if (Math.Abs(deviation) < 0.001) {
+                                // No deviation:
+                                double v = value / 100.0;
+                                sliderData = $"{sliderName}@{v}";
+                            } else {
+                                // With deviation, val range:
+                                double val_neg_normalized = val_dev_neg / 100.0;
+                                double val_pos_normalized = val_dev_pos / 100.0;
+                                sliderData = $"{sliderName}@{val_neg_normalized}:{val_pos_normalized}";
+                            }
 
                             sliderDataList.Add(sliderData);
+                        }
+
+                        if (sliderDataList.Count == 0) {
+                            continue;
                         }
 
                         // write:
