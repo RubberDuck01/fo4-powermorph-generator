@@ -98,14 +98,23 @@ namespace RD_PowerMorph_Generator.Controllers {
         public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, double deviation, int randomnessPercentage) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             var morphsFileBuilder = new StringBuilder("All|Female|HumanRace=");
+            var random = new Random();
 
             foreach (var xmlDoc in _bodyXmls) {
                 var presetList = xmlDoc.Descendants("Preset");
 
                 foreach (var preset in presetList) {
+                    if (random.Next(0,100) >= randomnessPercentage) {
+                        continue;
+                    }
+                    
                     string? presetName = preset.Attribute("name")?.Value;
-
                     if (string.IsNullOrEmpty(presetName)) {
+                        continue;
+                    }
+
+                    var sliderList = preset.Descendants("SetSlider").Where(slider => slider.Attribute("size")?.Value?.ToLower() == sizeFilter.ToLower()).ToList();
+                    if (sliderList.Count == 0) {
                         continue;
                     }
 
