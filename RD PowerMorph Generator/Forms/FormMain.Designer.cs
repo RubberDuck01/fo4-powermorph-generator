@@ -37,7 +37,7 @@
             btnHelpLoadXmls = new Button();
             gbGenerateBodyGenFiles = new GroupBox();
             cboxPlayerMorphs = new ComboBox();
-            cbAllowChangePlayer = new CheckBox();
+            cbDisableChangePlayer = new CheckBox();
             tbRandomFilter = new TextBox();
             radioBtnFilterSmall = new RadioButton();
             radioBtnFilterBig = new RadioButton();
@@ -223,7 +223,7 @@
             // 
             gbGenerateBodyGenFiles.BackColor = Color.Transparent;
             gbGenerateBodyGenFiles.Controls.Add(cboxPlayerMorphs);
-            gbGenerateBodyGenFiles.Controls.Add(cbAllowChangePlayer);
+            gbGenerateBodyGenFiles.Controls.Add(cbDisableChangePlayer);
             gbGenerateBodyGenFiles.Controls.Add(tbRandomFilter);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterSmall);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterBig);
@@ -256,16 +256,18 @@
             cboxPlayerMorphs.Size = new Size(205, 23);
             cboxPlayerMorphs.TabIndex = 24;
             // 
-            // cbAllowChangePlayer
+            // cbDisableChangePlayer
             // 
-            cbAllowChangePlayer.AutoSize = true;
-            cbAllowChangePlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAllowChangePlayer.Location = new Point(331, 116);
-            cbAllowChangePlayer.Name = "cbAllowChangePlayer";
-            cbAllowChangePlayer.Size = new Size(149, 19);
-            cbAllowChangePlayer.TabIndex = 23;
-            cbAllowChangePlayer.Text = "Allow morphs to Player";
-            cbAllowChangePlayer.UseVisualStyleBackColor = true;
+            cbDisableChangePlayer.AutoSize = true;
+            cbDisableChangePlayer.Checked = true;
+            cbDisableChangePlayer.CheckState = CheckState.Checked;
+            cbDisableChangePlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbDisableChangePlayer.Location = new Point(331, 116);
+            cbDisableChangePlayer.Name = "cbDisableChangePlayer";
+            cbDisableChangePlayer.Size = new Size(146, 19);
+            cbDisableChangePlayer.TabIndex = 23;
+            cbDisableChangePlayer.Text = "Exclude Player morphs";
+            cbDisableChangePlayer.UseVisualStyleBackColor = true;
             // 
             // tbRandomFilter
             // 
@@ -789,7 +791,7 @@
         private Label lblRandomFilter;
         private Label lblBigSmallFilter;
         private TextBox tbRandomFilter;
-        private CheckBox cbAllowChangePlayer;
+        private CheckBox cbDisableChangePlayer;
         private ComboBox cboxPlayerMorphs;
     }
 }

@@ -35,6 +35,13 @@ namespace RD_PowerMorph_Generator.Helpers {
             }
         }
 
+        public void SetCheckBoxCaption(string chkName, string chkCaption) {
+            var checkBox = _formMain.Controls.Find(chkName, true).FirstOrDefault() as CheckBox;
+            if (checkBox != null) {
+                _toolTip.SetToolTip(checkBox, chkCaption);
+            }
+        }
+
         public void SetLabelPathOk(string lblName, string txtPath) {
             var label = _formMain.Controls.Find(lblName, true).FirstOrDefault() as Label;
             if (label != null) {
