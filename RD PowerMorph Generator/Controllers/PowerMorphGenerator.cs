@@ -55,7 +55,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation) {
+        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs) {
             // work start
             _visualIndicatorController.SetPbWorking("pbGeneratorState");
             _progressBar.Minimum = 0;
@@ -70,7 +70,7 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             try {
                 await Task.Run(() => {
-                    GenerateMorphsIni(progress, sizeFilter);
+                    GenerateMorphsIni(progress, sizeFilter, disablePlayerMorphs);
                     GenerateTemplatesIni(progress, sizeFilter, deviation);
                 });
             } catch (Exception ex) {
@@ -89,16 +89,15 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             // if target body is loaded, and generator finished successfully, enable the update group:
             // _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
-
-            // GenerateMorphsIni();
-            // GenerateTemplatesIni();
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter) {
+        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, bool disablePlayerMorphs) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
-            var morphsFileBuilder = new StringBuilder("All|Female|HumanRace=");
+            var morphsFileBuilder = new StringBuilder();
+            morphsFileBuilder.Append("All|Female|HumanRace=");
 
+            var presetNames = new List<string>();
             foreach (var xmlDoc in _bodyXmls) {
                 var presetList = xmlDoc.Descendants("Preset");
 
@@ -113,9 +112,22 @@ namespace RD_PowerMorph_Generator.Controllers {
                         continue;
                     }
 
-                    morphsFileBuilder.Append($"{presetName}|");
+                    presetNames.Add(presetName);
                     progress.Report(presetName);
                 }
+            }
+
+            if (presetNames.Any()) {
+                morphsFileBuilder.AppendLine(string.Join(", ", presetNames));
+            }
+
+            // Add lines for Player:
+            morphsFileBuilder.AppendLine("# FemalePlayer"); // ini comment
+            if (disablePlayerMorphs) {
+                // Exclude Player from morphs:
+                morphsFileBuilder.AppendLine("Fallout4.esm|7=[exclude_from_bodygen]");
+            } else {
+                morphsFileBuilder.AppendLine("Fallout4.esm|7=[include_in_bodygen]"); // TODO
             }
 
             using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {

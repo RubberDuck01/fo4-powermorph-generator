@@ -145,9 +145,18 @@ namespace RD_PowerMorph_Generator
                 sizeFilter = "big";
             }
 
-            // Get deviation randomness:
-            if (!double.TryParse(tbRandomFilter.Text, out double deviation)) {
-                MessageBox.Show("Something went wrong when parsing randomness percentage.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // Handle Player morphs:
+            bool disablePlayerMorphs = cbDisableMorphsPlayer.Checked; // true/checked = no player morphs, false/unchecked = player morphs
+
+            // Handle randomness (deviation):
+            double deviation = 0.0; // default, when tbRandomFilter is empty
+            string deviationText = tbRandomFilter.Text.Trim();
+            
+            if (string.IsNullOrEmpty(deviationText)) {
+                deviation = 0.0; // empty
+
+            } else if (!double.TryParse(deviationText, out deviation)) {
+                MessageBox.Show("Uh-oh, something went wrong when getting deviation values...", "E1: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -156,7 +165,7 @@ namespace RD_PowerMorph_Generator
                 return;
             }
 
-            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation);
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs);
         }
 
         private void tbRandomFilter_KeyPress(object sender, KeyPressEventArgs e) {

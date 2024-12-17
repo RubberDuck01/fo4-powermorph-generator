@@ -37,7 +37,7 @@
             btnHelpLoadXmls = new Button();
             gbGenerateBodyGenFiles = new GroupBox();
             cboxPlayerMorphs = new ComboBox();
-            cbDisableChangePlayer = new CheckBox();
+            cbDisableMorphsPlayer = new CheckBox();
             tbRandomFilter = new TextBox();
             radioBtnFilterSmall = new RadioButton();
             radioBtnFilterBig = new RadioButton();
@@ -223,7 +223,7 @@
             // 
             gbGenerateBodyGenFiles.BackColor = Color.Transparent;
             gbGenerateBodyGenFiles.Controls.Add(cboxPlayerMorphs);
-            gbGenerateBodyGenFiles.Controls.Add(cbDisableChangePlayer);
+            gbGenerateBodyGenFiles.Controls.Add(cbDisableMorphsPlayer);
             gbGenerateBodyGenFiles.Controls.Add(tbRandomFilter);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterSmall);
             gbGenerateBodyGenFiles.Controls.Add(radioBtnFilterBig);
@@ -256,18 +256,18 @@
             cboxPlayerMorphs.Size = new Size(205, 23);
             cboxPlayerMorphs.TabIndex = 24;
             // 
-            // cbDisableChangePlayer
+            // cbDisableMorphsPlayer
             // 
-            cbDisableChangePlayer.AutoSize = true;
-            cbDisableChangePlayer.Checked = true;
-            cbDisableChangePlayer.CheckState = CheckState.Checked;
-            cbDisableChangePlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbDisableChangePlayer.Location = new Point(331, 116);
-            cbDisableChangePlayer.Name = "cbDisableChangePlayer";
-            cbDisableChangePlayer.Size = new Size(146, 19);
-            cbDisableChangePlayer.TabIndex = 23;
-            cbDisableChangePlayer.Text = "Exclude Player morphs";
-            cbDisableChangePlayer.UseVisualStyleBackColor = true;
+            cbDisableMorphsPlayer.AutoSize = true;
+            cbDisableMorphsPlayer.Checked = true;
+            cbDisableMorphsPlayer.CheckState = CheckState.Checked;
+            cbDisableMorphsPlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbDisableMorphsPlayer.Location = new Point(331, 116);
+            cbDisableMorphsPlayer.Name = "cbDisableMorphsPlayer";
+            cbDisableMorphsPlayer.Size = new Size(160, 19);
+            cbDisableMorphsPlayer.TabIndex = 23;
+            cbDisableMorphsPlayer.Text = "Disable morphs on Player";
+            cbDisableMorphsPlayer.UseVisualStyleBackColor = true;
             // 
             // tbRandomFilter
             // 
@@ -791,7 +791,7 @@
         private Label lblRandomFilter;
         private Label lblBigSmallFilter;
         private TextBox tbRandomFilter;
-        private CheckBox cbDisableChangePlayer;
+        private CheckBox cbDisableMorphsPlayer;
         private ComboBox cboxPlayerMorphs;
     }
 }

@@ -71,7 +71,7 @@ namespace RD_PowerMorph_Generator.Helpers {
             _visualIndicatorController.SetPbCaption("pbGeneratorState", "Generator not ready because output directory is not set");
             _labelsWorker.SetLabelCaption("lblBigSmallFilter", "Specify the desired size filter used for getting values from body XML presets.\nIf you're unsure about this, leave it on default ('Big'). For more info, check the Wiki on GitHub!");
             _labelsWorker.SetLabelCaption("lblRandomFilter", "Allows you to apply random values for your body presets during initial generation.\nLeave it empty or at 0 to disable.\nNOT RECOMMENDED to use if you later want to patch the files for integration with your own body preset!");
-            _labelsWorker.SetCheckBoxCaption("cbDisableChangePlayer", "When checked (Disabled), the Player's body will be excluded from BodyGen.\nWhen unchecked (Enabled), the Player may get a random body morphs.\nUse at your own risk.");
+            _labelsWorker.SetCheckBoxCaption("cbDisableMorphsPlayer", "When checked (Disabled), the Player's body will be excluded from BodyGen.\nWhen unchecked (Enabled), the Player may get a random body morphs.\nUse at your own risk.");
         }
     }
 }
