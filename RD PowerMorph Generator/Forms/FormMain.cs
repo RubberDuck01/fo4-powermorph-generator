@@ -181,7 +181,7 @@ namespace RD_PowerMorph_Generator
                 }
             }
 
-            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs, selectedPlayerMorphPreset, _bodyLoader);
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs, selectedPlayerMorphPreset!, _bodyLoader);
         }
 
         private void tbRandomFilter_KeyPress(object sender, KeyPressEventArgs e) {
@@ -208,13 +208,24 @@ namespace RD_PowerMorph_Generator
         private void PopulatePlayerMorphsComboBox() {
             cboxPlayerMorphs.Items.Clear();
             cboxPlayerMorphs.Items.Add("(Random body preset)");
-            
+
             List<string> presetNames = _bodyLoader.GetLoadedPresetNames(_bodyLoader.GetAllBodyXmls());
             foreach (string presetName in presetNames) {
                 cboxPlayerMorphs.Items.Add(presetName);
             }
 
             cboxPlayerMorphs.SelectedIndex = 0;
+        }
+
+        private void btnUpdateBodyGenFiles_Click(object sender, EventArgs e) {
+            string sizeFilter = "big"; // default radio checked
+            if (radioBtnFilterSmall.Checked) {
+                sizeFilter = "small";
+            } else if (radioBtnFilterBig.Checked) {
+                sizeFilter = "big";
+            }
+
+            _powerMorphGenerator.UpdateTemplatesIniForDefaultBody(_bodyLoader, sizeFilter);
         }
     }
 }

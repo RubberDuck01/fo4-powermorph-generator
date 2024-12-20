@@ -489,6 +489,7 @@
             btnUpdateBodyGenFiles.TabIndex = 18;
             btnUpdateBodyGenFiles.Text = "Go!";
             btnUpdateBodyGenFiles.UseVisualStyleBackColor = true;
+            btnUpdateBodyGenFiles.Click += btnUpdateBodyGenFiles_Click;
             // 
             // lblUpdateTargetBodyName
             // 

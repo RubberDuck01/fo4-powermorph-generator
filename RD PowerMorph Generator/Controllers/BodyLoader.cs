@@ -99,5 +99,44 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             return presetNames;
         }
+
+        public Dictionary<string, double> ParseDefaultBodyPreset() {
+            if (_targetBodyXml == null) {
+                MessageBox.Show("No target body preset XML loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            var presetElement = _targetBodyXml?.Descendants("Preset").FirstOrDefault();
+            var sliders = presetElement?.Descendants("SetSlider")
+                .Where(slider => double.TryParse(slider.Attribute("value")?.Value, out _))
+                .ToDictionary(slider => slider.Attribute("name")?.Value!, slider => double.Parse(slider.Attribute("value")?.Value!));
+
+            return sliders!;
+        }
+
+        public Dictionary<string, Dictionary<string, double>> ParseLoadedPresets(string sizeFilter) {
+            var presetsDict = new Dictionary<string, Dictionary<string, double>>();
+
+            foreach (var xmlDoc in _bodyXmls) {
+                var presetElements = xmlDoc.Descendants("Preset");
+                
+                foreach (var preset in presetElements) {
+                    string presetName = preset.Attribute("name")?.Value!;
+                    
+                    var sliderElements = preset.Descendants("SetSlider")
+                        .Where(slider => slider.Attribute("size")?.Value?.Equals(sizeFilter, StringComparison.OrdinalIgnoreCase) == true);
+
+                    var sliders = sliderElements
+                        .Where(slider => double.TryParse(slider.Attribute("value")?.Value, out _))
+                        .ToDictionary(
+                            slider => slider.Attribute("name")?.Value!,
+                            slider => double.Parse(slider.Attribute("value")?.Value!)
+                        );
+
+                    presetsDict[presetName] = sliders;
+                }
+            }
+
+            return presetsDict;
+        }
     }
 }
