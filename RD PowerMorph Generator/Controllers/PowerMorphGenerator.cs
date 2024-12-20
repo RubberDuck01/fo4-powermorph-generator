@@ -127,7 +127,13 @@ namespace RD_PowerMorph_Generator.Controllers {
                 // Exclude Player from morphs:
                 morphsFileBuilder.AppendLine("Fallout4.esm|7=[exclude_from_bodygen]");
             } else {
-                morphsFileBuilder.AppendLine($"Fallout4.esm|7={selectedPlayerMorphsPreset}");
+                // If not-target preset specified for Player, use random (disable the line):
+                if (selectedPlayerMorphsPreset == "(Random body preset)") {
+                    morphsFileBuilder.AppendLine($"# Fallout4.esm|7=(Disabled - Randomized)");
+                } else {
+                    // Set it to desired preset:
+                    morphsFileBuilder.AppendLine($"Fallout4.esm|7={selectedPlayerMorphsPreset}");
+                }
             }
 
             using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {
