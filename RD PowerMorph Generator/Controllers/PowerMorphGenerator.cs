@@ -127,7 +127,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                 // Exclude Player from morphs:
                 morphsFileBuilder.AppendLine("Fallout4.esm|7=[exclude_from_bodygen]");
             } else {
-                morphsFileBuilder.AppendLine("Fallout4.esm|7=[include_in_bodygen]"); // TODO
+                morphsFileBuilder.AppendLine($"Fallout4.esm|7={selectedPlayerMorphsPreset}");
             }
 
             using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {
