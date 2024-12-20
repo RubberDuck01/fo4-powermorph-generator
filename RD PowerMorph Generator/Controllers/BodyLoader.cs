@@ -14,7 +14,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         private readonly LabelsWorker _labelsWorker;
         private readonly VisualIndicatorController _visualIndicatorController;
         private List<XDocument> _bodyXmls;
-        private XDocument _targetBodyXml;
+        private XDocument? _targetBodyXml;
 
         public BodyLoader(FormMain formMain, ToolTip sharedToolTip) {
             _formMain = formMain;
@@ -22,7 +22,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             _labelsWorker = new LabelsWorker(_formMain, sharedToolTip);
             _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
             _bodyXmls = new List<XDocument>();
-            _targetBodyXml = new XDocument();
+            _targetBodyXml = null;
         }
 
         // Load all XMLs from target directory:
@@ -74,12 +74,13 @@ namespace RD_PowerMorph_Generator.Controllers {
                         _controlsCommander.EnableApplicationDataGroupBox(Path.GetFileName(filePath));
                     } catch (Exception ex) {
                         MessageBox.Show($"Error loading target body XML file: {filePath}\n\n{ex.Message}", "Something went wrong...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _targetBodyXml = null;
                     }
                 }
             }
         }
 
-        public XDocument GetTargetBodyXml() {
+        public XDocument? GetTargetBodyXml() {
             return _targetBodyXml;
         }
 

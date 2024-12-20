@@ -13,6 +13,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         private readonly LabelsWorker _labelsWorker;
         private readonly VisualIndicatorController _visualIndicatorController;
         private List<XDocument> _bodyXmls;
+        private XDocument? _targetBodyXml;
         private string _outputDirectory;
         private readonly ProgressBar _progressBar;
 
@@ -22,12 +23,17 @@ namespace RD_PowerMorph_Generator.Controllers {
             _labelsWorker = new LabelsWorker(_formMain, sharedToolTip);
             _visualIndicatorController = new VisualIndicatorController(_formMain, sharedToolTip);
             _bodyXmls = new List<XDocument>();
+            _targetBodyXml = new XDocument();
             _outputDirectory = string.Empty;
             _progressBar = progressBar;
         }
 
         public void SetBodyXmls(List<XDocument> bodyXmls) {
             _bodyXmls = bodyXmls;
+        }
+
+        public void SetTargetBodyPreset(XDocument targetBodyPreset) {
+            _targetBodyXml = targetBodyPreset;
         }
 
         // Set output dir:
@@ -55,7 +61,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs, string selectedPlayerMorphsPreset) {
+        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs, string selectedPlayerMorphsPreset, BodyLoader bodyLoader) {
             // work start
             _visualIndicatorController.SetPbWorking("pbGeneratorState");
             _progressBar.Minimum = 0;
@@ -87,8 +93,17 @@ namespace RD_PowerMorph_Generator.Controllers {
             _progressBar.Value = _progressBar.Maximum;
             MessageBox.Show($"Done! Generated new BodyGen files for all {totalPresets} body presets!", "RD PowerMorph Generator - Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // if target body is loaded, and generator finished successfully, enable the update group:
-            // _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
+            // Finally, check if default (target) body preset is loaded and enable the update group:
+            if (bodyLoader.GetTargetBodyXml() != null) {
+                _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
+                _visualIndicatorController.SetPbPlus("pbBodyGenUpdateState");
+
+                // Set label to target body name:
+                var targetPresetName = bodyLoader.GetTargetBodyXml()?.Descendants("Preset").FirstOrDefault()?.Attribute("name")?.Value;
+                if (!string.IsNullOrEmpty(targetPresetName)) {
+                    _labelsWorker.SetLabelInfoTextAlt("lblUpdateTargetBodyName", targetPresetName, "The name of your selected target body preset");
+                }
+            }
         }
 
         // morphs.ini generation:
@@ -118,7 +133,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             }
 
             if (presetNames.Any()) {
-                morphsFileBuilder.AppendLine(string.Join(", ", presetNames));
+                morphsFileBuilder.AppendLine(string.Join("|", presetNames));
             }
 
             // Add lines for Player:

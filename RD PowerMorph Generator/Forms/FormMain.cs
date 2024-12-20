@@ -137,6 +137,13 @@ namespace RD_PowerMorph_Generator
             // Get loaded body presets:
             _powerMorphGenerator.SetBodyXmls(_bodyLoader.GetAllBodyXmls());
 
+            // Check if target body preset is loaded:
+            /*
+            if (_bodyLoader.GetTargetBodyXml() != null) {
+                _powerMorphGenerator.SetTargetBodyPreset(_bodyLoader.GetTargetBodyXml());
+            }
+            */
+
             // Handle size filter:
             string sizeFilter = "big"; // default radio checked
             if (radioBtnFilterSmall.Checked) {
@@ -174,7 +181,7 @@ namespace RD_PowerMorph_Generator
                 }
             }
 
-            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs, selectedPlayerMorphPreset);
+            await _powerMorphGenerator.GenerateBodyGenFilesAsync(sizeFilter, deviation, disablePlayerMorphs, selectedPlayerMorphPreset, _bodyLoader);
         }
 
         private void tbRandomFilter_KeyPress(object sender, KeyPressEventArgs e) {
