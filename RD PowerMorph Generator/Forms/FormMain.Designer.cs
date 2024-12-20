@@ -589,9 +589,9 @@
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(6, 37);
             label10.Name = "label10";
-            label10.Size = new Size(146, 15);
+            label10.Size = new Size(140, 15);
             label10.TabIndex = 12;
-            label10.Text = "Default body preset name:";
+            label10.Text = "Default body preset XML:";
             // 
             // lblInfoTotalXmls
             // 
