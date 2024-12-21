@@ -46,7 +46,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                     _labelsWorker.SetLabelPathOk("lblInfoGeneratorOutputPath", _outputDirectory);
                     _visualIndicatorController.SetPbOk("pbInisOutputDir");
                     _visualIndicatorController.SetPbCaption("pbInisOutputDir", "Output directory set!");
-                    
+
                     // Enable generator, indicating it's ready:
                     _controlsCommander.EnableButton("btnGenerateBodyGenFiles");
                     _visualIndicatorController.SetPbPlus("pbGeneratorState");
@@ -222,6 +222,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Logic for updating:
+        /*
         private Dictionary<string, Dictionary<string, double>> UpdatePresetSliders(Dictionary<string, Dictionary<string, double>> presetsDict, Dictionary<string, double> defaultSliders) {
             var updatedPresets = new Dictionary<string, Dictionary<string, double>>();
 
@@ -287,6 +288,113 @@ namespace RD_PowerMorph_Generator.Controllers {
             } catch (Exception ex) {
                 MessageBox.Show($"An error occurred during the update of BodyGen files:\n{ex.Message}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        */
+
+        public void UpdateTemplatesIniForDefaultBody(BodyLoader bodyLoader, string sizeFilter) {
+            if (_targetBodyXml == null) {
+                MessageBox.Show("No target body preset XML loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
+            if (!File.Exists(templatesIniPath)) {
+                MessageBox.Show("No templates.ini file found in the output directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try {
+                var defaultSliders = bodyLoader.ParseDefaultBodyPreset();
+                var templatesData = File.ReadAllLines(templatesIniPath);
+                var updatedTemplatesData = new List<string>();
+
+                foreach (var line in templatesData) {
+                    if (string.IsNullOrEmpty(line) || !line.Contains('=')) {
+                        updatedTemplatesData.Add(line);
+                        continue;
+                    }
+
+                    var parts = line.Split('=', 2);
+                    var presetName = parts[0].Trim();
+                    var slidersPart = parts[1];
+
+                    var presetXml = FindPresetXmlByName(presetName);
+                    if (presetXml == null) {
+                        // not found, keep it as-is:
+                        updatedTemplatesData.Add(line);
+                        continue;
+                    }
+
+                    var presetSliders = ParsePresetSliders(presetXml, sizeFilter);
+                    var adjustedSliders = ComputeAdjustedSliders(presetSliders, defaultSliders);
+
+                    // Build updated sliders line:
+                    var sliderEntries = adjustedSliders.Select(s => $"{s.Key}@{s.Value:0.##}");
+                    var updatedSlidersLine = $"{presetName}={string.Join(", ", sliderEntries)}";
+
+                    updatedTemplatesData.Add(updatedSlidersLine);
+                }
+
+                File.WriteAllLines(templatesIniPath, updatedTemplatesData);
+                MessageBox.Show("BodyGen files have been updated successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } catch (Exception ex) {
+                MessageBox.Show($"An error occurred during the update of BodyGen files:\n{ex.Message}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper - parse sliders from a preset XML:
+        private Dictionary<string, double> ParsePresetSliders(XDocument presetXml, string sizeFilter) {
+            var sliders = new Dictionary<string, double>();
+            var presetElement = presetXml.Descendants("Preset").FirstOrDefault();
+            if (presetElement == null) {
+                return sliders;
+            }
+
+            var sliderElements = presetElement.Descendants("SetSlider");
+            if (!string.IsNullOrEmpty(sizeFilter)) {
+                sliderElements = sliderElements.Where(s => s.Attribute("size")?.Value?.Equals(sizeFilter, StringComparison.OrdinalIgnoreCase) == true);
+            }
+
+            foreach (var slider in sliderElements) {
+                string sliderName = slider.Attribute("name")?.Value!;
+                if (string.IsNullOrEmpty(sliderName)) {
+                    continue;
+                }
+
+                if (double.TryParse(slider.Attribute("value")?.Value, out double sliderValue)) {
+                    sliders[sliderName] = sliderValue;
+                }
+            }
+
+            return sliders;
+        }
+
+        // Helper - find preset XML by name:
+        private XDocument? FindPresetXmlByName(string presetName) {
+            foreach (var xmlDoc in _bodyXmls) {
+                var presetElement = xmlDoc.Descendants("Preset").FirstOrDefault(p => p.Attribute("name")?.Value == presetName);
+                if (presetElement != null) {
+                    return new XDocument(presetElement);
+                }
+            }
+
+            return null;
+        }
+
+        // Compute adjusted sliders:
+        private Dictionary<string, double> ComputeAdjustedSliders(Dictionary<string, double> presetSliders, Dictionary<string, double> defaultSliders) {
+            var adjustedSliders = new Dictionary<string, double>();
+            var sliderNames = new HashSet<string>(presetSliders.Keys.Concat(defaultSliders.Keys));
+
+            foreach (var sliderName in sliderNames) {
+                presetSliders.TryGetValue(sliderName, out double presetValue);
+                defaultSliders.TryGetValue(sliderName, out double defaultValue);
+
+                double adjustedValue = (presetValue - defaultValue) / 100.0;
+                adjustedSliders[sliderName] = adjustedValue;
+            }
+
+            return adjustedSliders;
         }
     }
 }
