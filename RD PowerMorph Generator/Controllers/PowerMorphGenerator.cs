@@ -137,7 +137,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             }
 
             // Add lines for Player:
-            morphsFileBuilder.AppendLine("# FemalePlayer"); // ini comment
+            morphsFileBuilder.AppendLine("\n# FemalePlayer"); // ini comment
             if (disablePlayerMorphs) {
                 // Exclude Player from morphs:
                 morphsFileBuilder.AppendLine("Fallout4.esm|7=[exclude_from_bodygen]");
@@ -193,9 +193,6 @@ namespace RD_PowerMorph_Generator.Controllers {
 
                             val_dev_neg = Math.Max(Math.Min(val_dev_neg, 100), 0);
                             val_dev_pos = Math.Max(Math.Min(val_dev_pos, 100), 0);
-
-                            // double v = value / 100.0;
-                            // string sliderData = $"{sliderName}@{v}";
 
                             string sliderData;
                             if (Math.Abs(deviation) < 0.001) {
