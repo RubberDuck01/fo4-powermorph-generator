@@ -217,7 +217,7 @@ namespace RD_PowerMorph_Generator
             cboxPlayerMorphs.SelectedIndex = 0;
         }
 
-        private void btnUpdateBodyGenFiles_Click(object sender, EventArgs e) {
+        private async void btnUpdateBodyGenFiles_Click(object sender, EventArgs e) {
             string sizeFilter = "big"; // default radio checked
             if (radioBtnFilterSmall.Checked) {
                 sizeFilter = "small";
@@ -225,7 +225,32 @@ namespace RD_PowerMorph_Generator
                 sizeFilter = "big";
             }
 
-            _powerMorphGenerator.UpdateTemplatesIniForDefaultBody(_bodyLoader, sizeFilter);
+            btnUpdateBodyGenFiles.Enabled = false;
+            pgBarUpdate.Minimum = 0;
+            pgBarUpdate.Value = 0;
+
+            string templatesIniPath = Path.Combine(_powerMorphGenerator.GetOutputDirectory(), "templates.ini");
+            if (!File.Exists(templatesIniPath)) {
+                MessageBox.Show("No templates.ini file found in the output directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnUpdateBodyGenFiles.Enabled = true;
+                return;
+            }
+
+            string[] templatesData = await File.ReadAllLinesAsync(templatesIniPath);
+            int totalLines = templatesData.Length;
+            pgBarUpdate.Maximum = totalLines;
+
+            var progress = new Progress<int>(value => {
+                if (value <= pgBarUpdate.Maximum) {
+                    pgBarUpdate.Value = value;
+                }
+            });
+
+            await _powerMorphGenerator.UpdateTemplatesIniForDefaultBodyAsync(_bodyLoader, sizeFilter, progress);
+
+            btnUpdateBodyGenFiles.Enabled = true;
+            _visualIndicatorController.SetPbOk("pbBodyGenUpdateState");
+            _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "BodyGen files updated successfully!");
         }
     }
 }

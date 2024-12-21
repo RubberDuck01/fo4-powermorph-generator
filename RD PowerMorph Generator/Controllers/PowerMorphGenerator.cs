@@ -222,7 +222,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Logic for updating:
-        public void UpdateTemplatesIniForDefaultBody(BodyLoader bodyLoader, string sizeFilter) {
+        public async Task UpdateTemplatesIniForDefaultBodyAsync(BodyLoader bodyLoader, string sizeFilter, IProgress<int> progress) {
             if (_targetBodyXml == null) {
                 MessageBox.Show("No target body preset XML loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -239,34 +239,40 @@ namespace RD_PowerMorph_Generator.Controllers {
                 var templatesData = File.ReadAllLines(templatesIniPath);
                 var updatedTemplatesData = new List<string>();
 
+                int totalLines = templatesData.Length;
+                int processedLines = 0;
+
                 foreach (var line in templatesData) {
                     if (string.IsNullOrEmpty(line) || !line.Contains('=')) {
                         updatedTemplatesData.Add(line);
-                        continue;
+                        // continue;
+                    } else {
+                        var parts = line.Split('=', 2);
+                        var presetName = parts[0].Trim();
+                        var slidersPart = parts[1];
+
+                        var presetXml = FindPresetXmlByName(presetName);
+                        if (presetXml == null) {
+                            // not found, keep it as-is:
+                            updatedTemplatesData.Add(line);
+                            // continue;
+                        } else {
+                            var presetSliders = ParsePresetSliders(presetXml, sizeFilter);
+                            var adjustedSliders = ComputeAdjustedSliders(presetSliders, defaultSliders);
+
+                            // Build updated sliders line:
+                            var sliderEntries = adjustedSliders.Select(s => $"{s.Key}@{s.Value:0.##}");
+                            var updatedSlidersLine = $"{presetName}={string.Join(", ", sliderEntries)}";
+
+                            updatedTemplatesData.Add(updatedSlidersLine);
+                        }
                     }
 
-                    var parts = line.Split('=', 2);
-                    var presetName = parts[0].Trim();
-                    var slidersPart = parts[1];
-
-                    var presetXml = FindPresetXmlByName(presetName);
-                    if (presetXml == null) {
-                        // not found, keep it as-is:
-                        updatedTemplatesData.Add(line);
-                        continue;
-                    }
-
-                    var presetSliders = ParsePresetSliders(presetXml, sizeFilter);
-                    var adjustedSliders = ComputeAdjustedSliders(presetSliders, defaultSliders);
-
-                    // Build updated sliders line:
-                    var sliderEntries = adjustedSliders.Select(s => $"{s.Key}@{s.Value:0.##}");
-                    var updatedSlidersLine = $"{presetName}={string.Join(", ", sliderEntries)}";
-
-                    updatedTemplatesData.Add(updatedSlidersLine);
+                    processedLines++;
+                    progress.Report(processedLines);
                 }
 
-                File.WriteAllLines(templatesIniPath, updatedTemplatesData);
+                await File.WriteAllLinesAsync(templatesIniPath, updatedTemplatesData);
                 MessageBox.Show("BodyGen files have been updated successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } catch (Exception ex) {
                 MessageBox.Show($"An error occurred during the update of BodyGen files:\n{ex.Message}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
