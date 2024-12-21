@@ -51,7 +51,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                     _controlsCommander.EnableButton("btnGenerateBodyGenFiles");
                     _visualIndicatorController.SetPbPlus("pbGeneratorState");
                     _visualIndicatorController.SetPbCaption("pbGeneratorState", "PowerMorph Generator is ready to rock!");
-                    _labelsWorker.SetLabelInfoTextAlt("lblGeneratorState", "Ready! Waiting for user input...", "Hit the 'Generate BodyGen Files' button to begin!");
+                    _labelsWorker.SetLabelInfoTextAlt("lblGeneratorState", "Ready!", "Hit the 'Generate BodyGen Files' button to begin!");
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // Generate BodyGen files - master logic:
-        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs, string selectedPlayerMorphsPreset, BodyLoader bodyLoader) {
+        public async Task GenerateBodyGenFilesAsync(string sizeFilter, double deviation, bool disablePlayerMorphs, string selectedPlayerMorphsPreset, bool writeUniqueNpcLines, BodyLoader bodyLoader) {
             // work start
             _visualIndicatorController.SetPbWorking("pbGeneratorState");
             _progressBar.Minimum = 0;
@@ -71,12 +71,12 @@ namespace RD_PowerMorph_Generator.Controllers {
 
             var progress = new Progress<string>(message => {
                 _progressBar.Value += 1;
-                _labelsWorker.SetLabelInfoTextAlt("lblGeneratorState", $"Processing: {message}", "Generating files, please wait...");
+                _labelsWorker.SetLabelInfoTextAlt("lblGeneratorState", $"Processing...", "Generating files, please wait...");
             });
 
             try {
                 await Task.Run(() => {
-                    GenerateMorphsIni(progress, sizeFilter, disablePlayerMorphs, selectedPlayerMorphsPreset);
+                    GenerateMorphsIni(progress, sizeFilter, disablePlayerMorphs, selectedPlayerMorphsPreset, writeUniqueNpcLines);
                     GenerateTemplatesIni(progress, sizeFilter, deviation);
                 });
             } catch (Exception ex) {
@@ -97,6 +97,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             if (bodyLoader.GetTargetBodyXml() != null) {
                 _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
                 _visualIndicatorController.SetPbPlus("pbBodyGenUpdateState");
+                _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "PowerMorph Patcher is ready!");
 
                 // Set label to target body name:
                 var targetPresetName = bodyLoader.GetTargetBodyXml()?.Descendants("Preset").FirstOrDefault()?.Attribute("name")?.Value;
@@ -107,7 +108,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         }
 
         // morphs.ini generation:
-        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, bool disablePlayerMorphs, string selectedPlayerMorphsPreset) {
+        public void GenerateMorphsIni(IProgress<string> progress, string sizeFilter, bool disablePlayerMorphs, string selectedPlayerMorphsPreset, bool writeUniqueNpcLines) {
             string morphsIniPath = Path.Combine(_outputDirectory, "morphs.ini");
             var morphsFileBuilder = new StringBuilder();
             morphsFileBuilder.Append("All|Female|HumanRace=");
@@ -137,7 +138,7 @@ namespace RD_PowerMorph_Generator.Controllers {
             }
 
             // Add lines for Player:
-            morphsFileBuilder.AppendLine("\n# FemalePlayer"); // ini comment
+            morphsFileBuilder.AppendLine("\n# Female Player"); // ini comment
             if (disablePlayerMorphs) {
                 // Exclude Player from morphs:
                 morphsFileBuilder.AppendLine("Fallout4.esm|7=[exclude_from_bodygen]");
@@ -149,6 +150,24 @@ namespace RD_PowerMorph_Generator.Controllers {
                     // Set it to desired preset:
                     morphsFileBuilder.AppendLine($"Fallout4.esm|7={selectedPlayerMorphsPreset}");
                 }
+            }
+
+            // Lines (comments) for Unique NPCs (companions, but can be any actor). These are the most important ones to me:
+            if (writeUniqueNpcLines) {
+                morphsFileBuilder.AppendLine("\n# Cait");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|79249=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# Curie (Synth)");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|1647C6=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# Piper");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|2F1E=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# R4-04 (Tales From the Commonwealth)");
+                morphsFileBuilder.AppendLine("# 3DNPC_FO4.esp|4356=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# Ivy (Companion Ivy V6)");
+                morphsFileBuilder.AppendLine("# CompanionIvy.esm|0803=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# Heather (Heather V2)");
+                morphsFileBuilder.AppendLine("# llamaCompanionHeatherv2.esp|AB33=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("\n# Ellen (Ellen The Cartographer)");
+                morphsFileBuilder.AppendLine("# ellen.esp|1002=enter_desired_preset_name");
             }
 
             using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {

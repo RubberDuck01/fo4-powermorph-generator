@@ -72,6 +72,7 @@ namespace RD_PowerMorph_Generator.Helpers {
             _labelsWorker.SetLabelCaption("lblBigSmallFilter", "Specify the desired size filter used for getting values from body XML presets.\nIf you're unsure about this, leave it on default ('Big'). For more info, check the Wiki on GitHub!");
             _labelsWorker.SetLabelCaption("lblRandomFilter", "Allows you to apply random values for your body presets during initial generation.\nLeave it empty or at 0 to disable.\nNOT RECOMMENDED to use if you later want to patch the files for integration with your own body preset!");
             _labelsWorker.SetCheckBoxCaption("cbDisableMorphsPlayer", "When checked (Disabled), the Player's body will be excluded from BodyGen.\nWhen unchecked (Enabled), the Player may get a random body morphs.\nUse at your own risk.");
+            _labelsWorker.SetCheckBoxCaption("cbWriteUniqueNpcLines", "When checked (Enabled), the PowerMorph Generator will write some extra lines for specifying the bodies of some Unique NPCs.\nThis is will NOT affect the generation process.\nAll the extra lines are commented - meaning they are disabled\nand you'll have to manually edit the morphs.ini file to\nuncomment (enable) them.");
         }
     }
 }

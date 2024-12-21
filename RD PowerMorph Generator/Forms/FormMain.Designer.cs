@@ -36,6 +36,7 @@
             btnLoadDefaultBody = new Button();
             btnHelpLoadXmls = new Button();
             gbGenerateBodyGenFiles = new GroupBox();
+            cbWriteUniqueNpcLines = new CheckBox();
             cboxPlayerMorphs = new ComboBox();
             cbDisableMorphsPlayer = new CheckBox();
             tbRandomFilter = new TextBox();
@@ -222,6 +223,7 @@
             // gbGenerateBodyGenFiles
             // 
             gbGenerateBodyGenFiles.BackColor = Color.Transparent;
+            gbGenerateBodyGenFiles.Controls.Add(cbWriteUniqueNpcLines);
             gbGenerateBodyGenFiles.Controls.Add(cboxPlayerMorphs);
             gbGenerateBodyGenFiles.Controls.Add(cbDisableMorphsPlayer);
             gbGenerateBodyGenFiles.Controls.Add(tbRandomFilter);
@@ -247,11 +249,24 @@
             gbGenerateBodyGenFiles.TabStop = false;
             gbGenerateBodyGenFiles.Text = "Generate BodyGen Files:";
             // 
+            // cbWriteUniqueNpcLines
+            // 
+            cbWriteUniqueNpcLines.AutoSize = true;
+            cbWriteUniqueNpcLines.Checked = true;
+            cbWriteUniqueNpcLines.CheckState = CheckState.Checked;
+            cbWriteUniqueNpcLines.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbWriteUniqueNpcLines.Location = new Point(331, 104);
+            cbWriteUniqueNpcLines.Name = "cbWriteUniqueNpcLines";
+            cbWriteUniqueNpcLines.Size = new Size(149, 19);
+            cbWriteUniqueNpcLines.TabIndex = 25;
+            cbWriteUniqueNpcLines.Text = "Write Unique NPC lines";
+            cbWriteUniqueNpcLines.UseVisualStyleBackColor = true;
+            // 
             // cboxPlayerMorphs
             // 
             cboxPlayerMorphs.Enabled = false;
             cboxPlayerMorphs.FormattingEnabled = true;
-            cboxPlayerMorphs.Location = new Point(331, 138);
+            cboxPlayerMorphs.Location = new Point(331, 145);
             cboxPlayerMorphs.Name = "cboxPlayerMorphs";
             cboxPlayerMorphs.Size = new Size(205, 23);
             cboxPlayerMorphs.TabIndex = 24;
@@ -262,7 +277,7 @@
             cbDisableMorphsPlayer.Checked = true;
             cbDisableMorphsPlayer.CheckState = CheckState.Checked;
             cbDisableMorphsPlayer.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbDisableMorphsPlayer.Location = new Point(331, 116);
+            cbDisableMorphsPlayer.Location = new Point(331, 123);
             cbDisableMorphsPlayer.Name = "cbDisableMorphsPlayer";
             cbDisableMorphsPlayer.Size = new Size(160, 19);
             cbDisableMorphsPlayer.TabIndex = 23;
@@ -342,7 +357,7 @@
             // 
             pbGeneratorState.BackColor = Color.Transparent;
             pbGeneratorState.BackgroundImageLayout = ImageLayout.Stretch;
-            pbGeneratorState.Location = new Point(221, 116);
+            pbGeneratorState.Location = new Point(221, 123);
             pbGeneratorState.Name = "pbGeneratorState";
             pbGeneratorState.Size = new Size(45, 45);
             pbGeneratorState.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -354,7 +369,7 @@
             lblGeneratorState.AutoSize = true;
             lblGeneratorState.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGeneratorState.ForeColor = Color.Red;
-            lblGeneratorState.Location = new Point(221, 98);
+            lblGeneratorState.Location = new Point(221, 105);
             lblGeneratorState.Name = "lblGeneratorState";
             lblGeneratorState.Size = new Size(59, 15);
             lblGeneratorState.TabIndex = 15;
@@ -363,7 +378,7 @@
             // btnGenerateBodyGenFiles
             // 
             btnGenerateBodyGenFiles.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnGenerateBodyGenFiles.Location = new Point(6, 116);
+            btnGenerateBodyGenFiles.Location = new Point(6, 123);
             btnGenerateBodyGenFiles.Name = "btnGenerateBodyGenFiles";
             btnGenerateBodyGenFiles.Size = new Size(209, 45);
             btnGenerateBodyGenFiles.TabIndex = 14;
@@ -375,7 +390,7 @@
             // 
             lblGeneratorStateText.AutoSize = true;
             lblGeneratorStateText.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGeneratorStateText.Location = new Point(6, 98);
+            lblGeneratorStateText.Location = new Point(6, 105);
             lblGeneratorStateText.Name = "lblGeneratorStateText";
             lblGeneratorStateText.Size = new Size(162, 15);
             lblGeneratorStateText.TabIndex = 13;
@@ -795,5 +810,6 @@
         private TextBox tbRandomFilter;
         private CheckBox cbDisableMorphsPlayer;
         private ComboBox cboxPlayerMorphs;
+        private CheckBox cbWriteUniqueNpcLines;
     }
 }
