@@ -102,7 +102,7 @@
             lblVer.Name = "lblVer";
             lblVer.Size = new Size(97, 15);
             lblVer.TabIndex = 1;
-            lblVer.Text = "v0.7 (02/11/2024)";
+            lblVer.Text = "v1.0 (22/12/2024)";
             // 
             // btnXmlsLoad
             // 
@@ -729,7 +729,9 @@
             Controls.Add(gbLoadXmlsControls);
             Controls.Add(lblVer);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rubber Duck's PowerMorph Generator";
