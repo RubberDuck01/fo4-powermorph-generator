@@ -155,19 +155,21 @@ namespace RD_PowerMorph_Generator.Controllers {
             // Lines (comments) for Unique NPCs (companions, but can be any actor). These are the most important ones to me:
             if (writeUniqueNpcLines) {
                 morphsFileBuilder.AppendLine("\n# Cait");
-                morphsFileBuilder.AppendLine("# Fallout4.esm|79249=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|79249=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# Curie (Synth)");
-                morphsFileBuilder.AppendLine("# Fallout4.esm|1647C6=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|1647C6=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# Piper");
-                morphsFileBuilder.AppendLine("# Fallout4.esm|2F1E=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# Fallout4.esm|2F1E=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# R4-04 (Tales From the Commonwealth)");
-                morphsFileBuilder.AppendLine("# 3DNPC_FO4.esp|4356=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# 3DNPC_FO4.esp|4356=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# Ivy (Companion Ivy V6)");
-                morphsFileBuilder.AppendLine("# CompanionIvy.esm|0803=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# CompanionIvy.esm|0803=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# Heather (Heather V2)");
-                morphsFileBuilder.AppendLine("# llamaCompanionHeatherv2.esp|AB33=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# llamaCompanionHeatherv2.esp|AB33=[enter_desired_preset_name]");
                 morphsFileBuilder.AppendLine("\n# Ellen (Ellen The Cartographer)");
-                morphsFileBuilder.AppendLine("# ellen.esp|1002=enter_desired_preset_name");
+                morphsFileBuilder.AppendLine("# ellen.esp|1002=[enter_desired_preset_name]");
+                morphsFileBuilder.AppendLine("\n# Female Assistant (Gun For Hire)");
+                morphsFileBuilder.AppendLine("# Flashy_CrimeAndPunishment_GunForHire_Addon.esp|45AD=[enter_desired_preset_name]");
             }
 
             using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {
