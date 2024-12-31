@@ -172,7 +172,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                 morphsFileBuilder.AppendLine("# Flashy_CrimeAndPunishment_GunForHire_Addon.esp|45AD=[enter_desired_preset_name]");
             }
 
-            using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.UTF8)) {
+            using (var morphsFile = new StreamWriter(morphsIniPath, false, Encoding.Default)) {
                 morphsFile.Write(morphsFileBuilder.ToString());
             }
         }
@@ -180,7 +180,7 @@ namespace RD_PowerMorph_Generator.Controllers {
         public void GenerateTemplatesIni(IProgress<string> progress, string sizeFilter, double deviation) {
             string templatesIniPath = Path.Combine(_outputDirectory, "templates.ini");
 
-            using (var templatesFile = new StreamWriter(templatesIniPath, false, Encoding.UTF8)) {
+            using (var templatesFile = new StreamWriter(templatesIniPath, false, Encoding.Default)) {
                 foreach (var xmlDoc in _bodyXmls) {
                     var presetList = xmlDoc.Descendants("Preset");
 
