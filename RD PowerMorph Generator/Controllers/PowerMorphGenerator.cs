@@ -103,6 +103,7 @@ namespace RD_PowerMorph_Generator.Controllers {
                     _controlsCommander.DisableButton("btnUpdateBodyGenFiles");
                     _visualIndicatorController.SetPbNotOk("pbBodyGenUpdateState");
                     _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "Deviation used, patching disabled!");
+                    MessageBox.Show("You've used deviation (randomness) while generating your new morphs.ini and templates.ini files. Patching is not possible for such cases.\n\nIf you generate new files without deviation, the patching process will become available.", "PowerMorph - Patching not allowed!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 } else {
                     // Deviation not used, enable patching:
                     _controlsCommander.EnableButton("btnUpdateBodyGenFiles");
