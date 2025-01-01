@@ -96,13 +96,24 @@ namespace RD_PowerMorph_Generator.Controllers {
             // Finally, check if default (target) body preset is loaded and enable the update group:
             if (bodyLoader.GetTargetBodyXml() != null) {
                 _controlsCommander.EnableGroup("gbUpdateBodyGenFiles");
-                _visualIndicatorController.SetPbPlus("pbBodyGenUpdateState");
-                _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "PowerMorph Patcher is ready!");
-
-                // Set label to target body name:
-                var targetPresetName = bodyLoader.GetTargetBodyXml()?.Descendants("Preset").FirstOrDefault()?.Attribute("name")?.Value;
-                if (!string.IsNullOrEmpty(targetPresetName)) {
-                    _labelsWorker.SetLabelInfoTextAlt("lblUpdateTargetBodyName", targetPresetName, "The name of your selected target body preset");
+                
+                // Disable patching if deviation has been used:
+                if (Math.Abs(deviation) > 0.001) {
+                    // Deviation used, disable patching:
+                    _controlsCommander.DisableButton("btnUpdateBodyGenFiles");
+                    _visualIndicatorController.SetPbNotOk("pbBodyGenUpdateState");
+                    _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "Deviation used, patching disabled!");
+                } else {
+                    // Deviation not used, enable patching:
+                    _controlsCommander.EnableButton("btnUpdateBodyGenFiles");
+                    _visualIndicatorController.SetPbPlus("pbBodyGenUpdateState");
+                    _visualIndicatorController.SetPbCaption("pbBodyGenUpdateState", "PowerMorph Patcher is ready!");
+                    
+                    // Set label to target body name:
+                    var targetPresetName = bodyLoader.GetTargetBodyXml()?.Descendants("Preset").FirstOrDefault()?.Attribute("name")?.Value;
+                    if (!string.IsNullOrEmpty(targetPresetName)) {
+                        _labelsWorker.SetLabelInfoTextAlt("lblUpdateTargetBodyName", targetPresetName, "The name of your selected target body preset");
+                    }
                 }
             }
         }
