@@ -98,11 +98,11 @@
             // lblVer
             // 
             lblVer.AutoSize = true;
-            lblVer.Location = new Point(735, 467);
+            lblVer.Location = new Point(726, 467);
             lblVer.Name = "lblVer";
-            lblVer.Size = new Size(97, 15);
+            lblVer.Size = new Size(106, 15);
             lblVer.TabIndex = 1;
-            lblVer.Text = "v1.0 (22/12/2024)";
+            lblVer.Text = "v1.0.0 (03/01/2025)";
             // 
             // btnXmlsLoad
             // 

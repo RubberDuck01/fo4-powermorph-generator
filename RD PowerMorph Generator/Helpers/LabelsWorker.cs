@@ -16,8 +16,7 @@ namespace RD_PowerMorph_Generator.Helpers {
         }
 
         public void SetInitialLabelCaptions() {
-            // TODO: Set initial label captions
-            SetLabelCaption("lblVer", "Current version is 1.0.0 (XX/Nov/2024)");
+            SetLabelCaption("lblVer", "Current version is: 1.0.0 (03/Jan/2025)");
             SetLabelCaption("lblXmlsPath", "Path to all your body preset XML files");
             SetLabelCaption("lblDefaultBodyPresetPath", "Path to your target (default) body preset XML file");
             SetLabelCaption("lblInfoTotalXmls", "Number of detected body preset XMLs in selected directory");
