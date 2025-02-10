@@ -45,7 +45,7 @@ namespace RD_PowerMorph_Generator.Helpers {
 
         public void OpenNexusLink() {
             Process.Start(new ProcessStartInfo {
-                FileName = "https://www.nexusmods.com/fallout4/mods/50476",
+                FileName = "https://next.nexusmods.com/profile/RubberDuck001",
                 UseShellExecute = true
             });
         }
