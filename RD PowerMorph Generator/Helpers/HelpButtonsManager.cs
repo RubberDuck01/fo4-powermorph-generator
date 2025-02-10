@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace RD_PowerMorph_Generator.Helpers
 {
-    internal class HelpButtonsManager
-    {
-        internal void ShowHelpMessage(int btnId)
-        {
-            string helpText = btnId switch
-            {
+    internal class HelpButtonsManager {
+        internal void ShowHelpMessage(int btnId) {
+            string helpText = btnId switch {
                 1 => HelpTextProvider.HelpLoadXmls(),
                 2 => HelpTextProvider.HelpGenerate(),
                 3 => HelpTextProvider.HelpUpdate(),

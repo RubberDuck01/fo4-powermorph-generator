@@ -102,7 +102,7 @@
             lblVer.Name = "lblVer";
             lblVer.Size = new Size(106, 15);
             lblVer.TabIndex = 1;
-            lblVer.Text = "v1.0.0 (03/01/2025)";
+            lblVer.Text = "v1.0.1 (10/02/2025)";
             // 
             // btnXmlsLoad
             // 
